@@ -16,7 +16,7 @@ class Student(AbstractUser):  # 继承，学生表在继承的基础上包含以
     password = models.CharField('密码', max_length=40, default='123456')  # 密码
     name = models.CharField('姓名', max_length=20)  # 姓名
     sclass = models.CharField('班号', max_length=20)  # 班号
-    sdept = models.CharField('学院', max_length=20, choices=DEPT, default=None)  # 学院
+    sdept = models.CharField('学院', max_length=20, choices=DEPT, null=True)  # 学院
     email = models.EmailField('邮箱', default=None)  # 邮箱
 
     class Meta:  # 表名
@@ -31,7 +31,7 @@ class Student(AbstractUser):  # 继承，学生表在继承的基础上包含以
 class Teacher(models.Model):
     sid = models.CharField("教工号", max_length=20, primary_key=True)
     name = models.CharField('姓名', max_length=20)
-    sdept = models.CharField('学院', max_length=20, choices=DEPT, default=None)
+    sdept = models.CharField('学院', max_length=20, choices=DEPT,  null=True)
     email = models.EmailField('邮箱', default=None)
     password = models.CharField('密码', max_length=40, default='000000')
 

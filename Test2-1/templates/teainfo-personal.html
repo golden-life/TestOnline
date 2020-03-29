@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/studentinfo.css">
+    <link rel="stylesheet" href="../static/font-awesome-4.7.0/css/font-awesome.css">
+    <link href="../static/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="../static/jquery-3.3.1.min.js"></script>
+    <script src="../static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+
+
+
+
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    
+    <title>教师页面</title>
+</head>
+<body>
+    <input type="checkbox" id="check">
+    <label for="check">
+        <i class="fa fa-bars" aria-hidden="true" id="btn"></i>
+        <i class="fa fa-times-circle-o" aria-hidden="true" id="cancel"></i>
+    </label>
+    <div class="sidebar">
+        <header>TestOnline</header>
+        <div class="info-photo">
+                <div class="profile-dtl">
+					<img src="/static/img/11.jpg">
+					<h2>{{ request.session.name }}</h2>   <!--此处之后改为用户名字-->
+                </div>
+            </div>
+        <ul>
+            <li><a href="{% url 'TeaInfoPersonal' %}"><i class="fa fa-user-o" aria-hidden="true"></i>个人信息</a></li>
+            <li><a href="#"><i class="fa fa-paper-plane-o" aria-hidden="true"></i>考试信息</a></li>
+            <li><a href="#"><i class="fa fa-check-square-o" aria-hidden="true"></i>成绩查看</a></li>
+            <li><a href="{% url 'index' %}"><i class="fa fa-times" aria-hidden="true"></i>退出</a></li>
+        </ul>
+    </div>
+    <section>
+    <div class="container">
+        <div class="tab-content">
+            <div id="home" class="container tab-pane active"><br>
+                <h3>个人信息</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>属性</th>
+                            <th>信息</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="danger">
+                            <td>教工号</td>
+                            <td>{{ request.session.sid }}</td>
+                        </tr>
+                        <tr class="active">
+                            <td>姓名</td>
+                            <td>{{ request.session.name }}</td>
+                        </tr>
+                        <tr class="warning">
+                            <td>学院</td>
+                            <td>{{ request.session.sdept }}</td>
+                        </tr>
+                        <tr class="active">
+                            <td>邮箱地址</td>
+                            <td>{{ request.session.email }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    </section>
+</body>
+</html>
