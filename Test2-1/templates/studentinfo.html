@@ -3,11 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>学生登录</title>
-    <link rel="stylesheet" href="../static/css/login.css">
+    <link rel="stylesheet" href="../static/css/studentinfo.css">
     <link rel="stylesheet" href="../static/font-awesome-4.7.0/css/font-awesome.css">
+
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+    <title>学生页面</title>
 </head>
 <body>
-        <h1>登录成功</h1>
+    <input type="checkbox" id="check">
+    <label for="check">
+        <i class="fa fa-bars" aria-hidden="true" id="btn"></i>
+        <i class="fa fa-times-circle-o" aria-hidden="true" id="cancel"></i>
+    </label>
+    <div class="sidebar">
+        <header>TestOnline</header>
+        <div class="info-photo">
+                <div class="profile-dtl">
+					<img src="/static/img/10.jpg">
+					<h2>王文奇</h2>   <!--此处之后改为用户名字-->
+                </div>
+            </div>
+        <ul>
+            <li><a href="#"><i class="fa fa-user-o" aria-hidden="true"></i>个人信息</a></li>
+            <li><a href="#"><i class="fa fa-paper-plane-o" aria-hidden="true"></i>考试信息</a></li>
+            <li><a href="#"><i class="fa fa-check-square-o" aria-hidden="true"></i>成绩查看</a></li>
+            <li><a href="#"><i class="fa fa-times" aria-hidden="true"></i>退出</a></li>
+        </ul>
+    </div>
+    <section>
+    </section>
 </body>
 </html>
