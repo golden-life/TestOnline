@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>在线做题系统</title>
+    <link rel="stylesheet" href="../static/css/index.css">
+    <link rel="stylesheet" href="../static/font-awesome-4.7.0/css/font-awesome.css">
+</head>
+<body>
+    <!--<div class="services-section">-->
+        <div class="inner-width">
+            <h1 class="section-title">Test Online</h1>
+            <div class="border"></div>
+            <div class="services-container">
+
+                <div class="service-box">
+                    <div class="service-icon">
+                        <i class="fa fa-graduation-cap" aria-hidden="true"></i>    
+                    </div>
+                    <div><a href="{% url 'login' %}">我是学生</a></div>
+                </div>
+                
+                <div class="service-box">
+                    <div class="service-icon">
+                        <i class="fa fa-book" aria-hidden="true"></i>
+                    </div>
+                    <div><a href="{% url 'teacherlogin' %}">我是教师</a></div>
+                </div>
+
+                <div class="service-box">
+                    <div class="service-icon">
+                        <i class="fa fa-user-circle" aria-hidden="true"></i>
+                    </div>
+                    <div><a href="#">我是管理员</a></div>
+                </div>
+
+            </div>
+        </div>
+    <!--</div>-->
+</body>
+</html>
