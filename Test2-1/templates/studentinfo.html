@@ -33,5 +33,42 @@
     </div>
     <section>
     </section>
+    <!--不知道放哪-->
+    <div class="tab-content">
+        <div id="home" class="container tab-pane active"><br>
+            <h3>考试信息</h3>
+            <!--
+            {% block paper_list %}
+            {% endblock %}
+            -->
+            <table class="table">
+         <thead>
+            <tr>
+                <th>科目</th>
+                <th>试卷名</th>
+                <th>总分</th>
+                <th>时间</th>
+                <th>操作</th>
+            </tr>
+         </thead>
+         <tbody>
+            {% for i in papers %}
+
+                <tr>
+                    <td>{{ i.course.name }}</td>
+                    <td>{{ i.name }}</td>
+                    <td>{{ i.total_score }}</td>
+                    <td>{{ i.exam_time }}</td>
+                    <td>
+                        <a href="/StartExam/?sid={{ stu.sid }}&papername={{ i.name }}">
+                        <button class="btn btn-primary" id="toExam+{{ i.name }}">开始考试</button>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+         </tbody>
+        </table>
+    </div>
+    </div>
 </body>
 </html>

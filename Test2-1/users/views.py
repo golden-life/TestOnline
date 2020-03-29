@@ -3,7 +3,7 @@ from django.views.generic.base import View
 from .form import RegisterForm, LoginForm
 from django.shortcuts import render, redirect
 from django.contrib.auth.hashers import make_password, check_password
-from .models import Student, Teacher
+from .models import Student, Teacher,Course,Question,Paper,Grade
 from django.contrib.auth import authenticate, login, logout
 title = "在线考试系统"
 
@@ -92,7 +92,8 @@ class LoginView(View):
             # if check_password(stu_passw, stu.password):
             if stu_password == stu.password:
                 # login(request, user)
-                return render(request, "studentinfo.html", {"stu": stu})
+                papers = Paper.objects.filter()
+                return render(request, "studentinfo.html", {"stu": stu,"papers": papers})
             else:
                 # u"用户名或密码错误"
                 return render(request, "login.html", {"msg": stu_passw, "login_form": login_form})
@@ -139,3 +140,40 @@ class TeacherLoginView(View):
                 return render(request, "teacherlogin.html", {"msg": tea_passw, "login_form": login_form})
         else:
             return render(request, "teacherlogin.html", {"login_form": login_form})
+
+#考试
+class PaperView(View):
+    #试卷
+    def StartExam(request):
+        sid = request.GET.get('sid')
+        papername = request.GET.get('papername')
+        print('|||学号', sid, '试卷名称', papername)
+        stu = Student.objects.get(sid=sid)
+        paper = Paper.objects.filter(name=papername)
+        print('学号', sid, '试卷名称', papername,'姓名',stu.name)
+        return render(request, "exam.html", {'stu':stu,"paper": paper,"papername": papername})
+
+    #成绩计算
+    def calGrade(request):
+        if request.method=='POST':
+            sid = request.POST.get('sid')
+            papername = request.POST.get('papername')
+            print('|学号|', sid, '试卷名称', papername)
+            stu = Student.objects.get(sid=sid)
+            print('学号',stu.sid,'姓名',stu.name)
+            paper = Paper.objects.filter(name=papername)
+            grade = Grade.objects.filter(stu=stu.sid)
+            question = Paper.objects.filter(name=papername).values("pid").values('id')
+            
+            exam_grade=0
+            for i in question:
+                qid = str(i['id'])
+                ans = request.POST.get(qid)
+                print(qid+':'+ans+'|')
+                #okans = i['question_id'].answer
+                #print(qid+'::'+okans+'|')
+                #if ans==okans:
+                #    exam_grade += i['question_id'].score
+
+            #Grade.objects.create(stu_id=sid,exam_name=papername,grade=exam_grade)
+            #print(exam_grade)
