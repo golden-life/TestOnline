@@ -110,8 +110,16 @@ section{
     height: 100vh;
     transition: all 0.5s;
 }
+<<<<<<< HEAD
 section h3
 {
     font-size: 30px;
     color: #0a1e44;
 }
+=======
+section h3{
+    font-size: 32px;
+    color:#0a1e44;
+
+}
+>>>>>>> master
