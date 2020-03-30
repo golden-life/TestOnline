@@ -144,7 +144,7 @@ class TeacherLoginView(View):
 #考试
 class PaperView(View):
     #试卷
-    def StartExam(request):
+    def StartExam(self,request):
         sid = request.GET.get('sid')
         papername = request.GET.get('papername')
         print('|||学号', sid, '试卷名称', papername)
