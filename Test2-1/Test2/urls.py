@@ -23,8 +23,13 @@ urlpatterns = [
     # 管理员登陆
     path('admin/', admin.site.urls),
     # path('captcha/', include('captcha.urls')),
+<<<<<<< HEAD
     path('', index, name="index"),  # 首页
     path('register/', RegisterView.as_view(), name="register"),  # 学生注册
+=======
+    path('index/', index, name="index"),  # 首页
+    path('register', RegisterView.as_view(), name="register"),  # 学生注册
+>>>>>>> 87a76a5cba052dbe43c1c1f15229172680cf5c08
     path('login/', LoginView.as_view(), name='login'),  # 学生登录
     # path('logout/', LogoutView.as_view(), name="logout"),
     path('teacherlogin/', TeacherLoginView.as_view(), name='teacherlogin'),  # 老师登录
