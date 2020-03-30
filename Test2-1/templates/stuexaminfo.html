@@ -14,7 +14,7 @@
 
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     
-    <title>学生页面</title>
+    <title>学生考试信息</title>
 </head>
 <body>
     <input type="checkbox" id="check">
@@ -41,35 +41,29 @@
     <div class="container">
         <div class="tab-content">
             <div id="home" class="container tab-pane active"><br>
-                <h3>个人信息</h3>
+                <h3>考试信息</h3>
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>属性</th>
-                            <th>信息</th>
+                            <th>考试科目</th>
+                            <th>试卷名称</th>
+                            <th>考试时间</th>
+                            <th>操作</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="danger">
-                            <td>学号</td>
-                            <td>{{ request.session.sid }}</td>
+                        {% for paper1 in paper%}
+                        <tr class="examinfo">
+                            <td>{{ paper1.course.name }}</td>
+                            <td>{{ paper1.name }}</td>
+                            <td>{{ paper1.start_time }}</td>
+                            <td>
+                                <a href="{%url 'StartExam'%}?sid={{ request.session.sid }}&papername={{ paper1.name }}">
+                                    <button id="toExam+{{ paper1.name }}">开始考试</button>
+                                </a>
+                            </td>
                         </tr>
-                        <tr class="active">
-                            <td>姓名</td>
-                            <td>{{ request.session.name }}</td>
-                        </tr>
-                        <tr class="warning">
-                            <td>学院</td>
-                            <td>{{ request.session.sdept }}</td>
-                        </tr>
-                        <tr class="active">
-                            <td>班号</td>
-                            <td>{{ request.session.sclass }}</td>
-                        </tr>
-                        <tr class="success">
-                            <td>邮箱地址</td>
-                            <td>{{ request.session.email }}</td>
-                        </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
             </div>

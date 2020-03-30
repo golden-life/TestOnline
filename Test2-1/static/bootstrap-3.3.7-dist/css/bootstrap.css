@@ -1584,7 +1584,7 @@ pre code {
 .container {
   /*padding-right: 15px;*/
   padding-left: 60px;
-  padding-top: 60px;
+  padding-top: 0px;
   margin-right: auto;
   margin-left: auto;
 
@@ -2457,6 +2457,32 @@ table th[class*="col-"] {
 .table-hover > tbody > tr.danger:hover > th {
   background-color: #ebcccc;
 }
+/*自己添加*/
+.table > thead > tr > td.examinfo,
+.table > tbody > tr > td.examinfo,
+.table > tfoot > tr > td.examinfo,
+.table > thead > tr > th.examinfo,
+.table > tbody > tr > th.examinfo,
+.table > tfoot > tr > th.examinfo,
+.table > thead > tr.examinfo > td,
+.table > tbody > tr.examinfo > td,
+.table > tfoot > tr.examinfo > td,
+.table > thead > tr.examinfo > th,
+.table > tbody > tr.examinfo > th,
+.table > tfoot > tr.examinfo > th {
+  background-color: #fffa65;
+  font-size: 20px;
+  font-family: serif;
+  text-align: center;
+}
+.table-hover > tbody > tr > td.examinfo:hover,
+.table-hover > tbody > tr > th.examinfo:hover,
+.table-hover > tbody > tr.examinfo:hover > td,
+.table-hover > tbody > tr:hover > .examinfo,
+.table-hover > tbody > tr.examinfo:hover > th {
+  background-color: #faf2cc;
+}
+/*自己添加*/
 .table-responsive {
   min-height: .01%;
   overflow-x: auto;

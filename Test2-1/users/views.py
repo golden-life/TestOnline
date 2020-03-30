@@ -159,11 +159,16 @@ def StuInfoPersonal(request):
 
 def TeaInfoPersonal(request):
     return render(request, 'teainfo-personal.html')
+
+
+def StuExamInfo(request):
+    paper =Paper.objects.filter()
+    return render(request, "stuexaminfo.html", {"paper": paper})
     
 #考试
 class PaperView(View):
     #试卷
-    def StartExam(self,request):
+    def StartExam(request):
         sid = request.GET.get('sid')
         papername = request.GET.get('papername')
         print('|||学号', sid, '试卷名称', papername)
@@ -171,7 +176,7 @@ class PaperView(View):
         paper = Paper.objects.filter(name=papername)
         print('学号', sid, '试卷名称', papername,'姓名',stu.name)
         return render(request, "exam.html", {'stu':stu,"paper": paper,"papername": papername})
-
+        # return render(request, 'index.html')
     #成绩计算
     def calGrade(request):
         if request.method=='POST':

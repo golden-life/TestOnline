@@ -20,7 +20,8 @@
 	color:#fff;
 }
 </style>
-<SCRIPT type="text/javascript">
+
+<script type="text/javascript">
         var get_time;
         var etime;
         var maxtime;
@@ -46,9 +47,8 @@
             }
             timer=setInterval("CountDown()", 1000);//隔1秒调用一次，实现时间变化
 
-        
+ </script>       
 
-</SCRIPT>
 </head>
 <body >
 <nav class="navbar navbar-expand-sm bg-light navbar-light ">
@@ -75,7 +75,7 @@
                     考试倒计时
                 -->
                 <p class="test_time"> 
-                    <input type="hidden" id="examtime" value={{i.exam_time}}>
+                    <input type="hidden" id="examtime" value="{{i.exam_time}}">
                     <strong id="timer"></strong>
                 </p>
                 <font><input type="submit" name="submitpaper" value="交卷"></font>

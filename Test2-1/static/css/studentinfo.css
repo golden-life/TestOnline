@@ -110,3 +110,8 @@ section{
     height: 100vh;
     transition: all 0.5s;
 }
+section h3{
+    font-size: 32px;
+    color:#0a1e44;
+
+}
