@@ -92,6 +92,12 @@ class LoginView(View):
             # if check_password(stu_passw, stu.password):
             if stu_password == stu.password:
                 # login(request, user)
+                request.session['sid'] = stu.sid
+                request.session['password'] = stu.password
+                request.session['name'] = stu.name
+                request.session['sclass'] = stu.sclass
+                request.session['sdept'] = stu.sdept
+                request.session['email'] = stu.email
                 return render(request, "studentinfo.html", {"stu": stu})
             else:
                 # u"用户名或密码错误"
@@ -104,7 +110,8 @@ class LogoutView(View):
     # @staticmethod
     def get(self, request):
         logout(request)
-        return render(request, "index.html", {"msg": u"您已经成功退出登录状态", })
+        # return render(request, "index.html", {"msg": u"您已经成功退出登录状态", })
+        return render(request, "index.html")
 
 
 class TeacherLoginView(View):
@@ -133,9 +140,22 @@ class TeacherLoginView(View):
             # if tea_password == tea.password:
             if tea_passw == tea.password:
                 # login(request, user)
+                request.session['sid'] = tea.sid
+                request.session['password'] = tea.password
+                request.session['name'] = tea.name
+                request.session['sdept'] = tea.sdept
+                request.session['email'] = tea.email
                 return render(request, "teacherinfo.html", {"tea": tea})
             else:
                 # u"用户名或密码错误"
                 return render(request, "teacherlogin.html", {"msg": tea_passw, "login_form": login_form})
         else:
             return render(request, "teacherlogin.html", {"login_form": login_form})
+
+
+def StuInfoPersonal(request):
+    return render(request, 'stuinfo-personal.html')
+
+
+def TeaInfoPersonal(request):
+    return render(request, 'teainfo-personal.html')

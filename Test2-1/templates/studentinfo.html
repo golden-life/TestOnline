@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/css/studentinfo.css">
-    <link rel="stylesheet" href="../static/font-awesome-4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="/static/css/studentinfo.css">
+    <link rel="stylesheet" href="/static/font-awesome-4.7.0/css/font-awesome.css">
 
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
@@ -21,14 +21,14 @@
         <div class="info-photo">
                 <div class="profile-dtl">
 					<img src="/static/img/10.jpg">
-					<h2>王文奇</h2>   <!--此处之后改为用户名字-->
+					<h2>{{ request.session.name }}</h2>   <!--此处之后改为用户名字-->
                 </div>
             </div>
         <ul>
-            <li><a href="#"><i class="fa fa-user-o" aria-hidden="true"></i>个人信息</a></li>
+            <li><a href="{%url 'StuInfoPersonal' %}"><i class="fa fa-user-o" aria-hidden="true"></i>个人信息</a></li>
             <li><a href="#"><i class="fa fa-paper-plane-o" aria-hidden="true"></i>考试信息</a></li>
             <li><a href="#"><i class="fa fa-check-square-o" aria-hidden="true"></i>成绩查看</a></li>
-            <li><a href="#"><i class="fa fa-times" aria-hidden="true"></i>退出</a></li>
+            <li><a href="{% url 'index' %}"><i class="fa fa-times" aria-hidden="true"></i>退出</a></li>
         </ul>
     </div>
     <section>
