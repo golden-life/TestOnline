@@ -11,11 +11,13 @@
     <title>学生页面</title>
 </head>
 <body>
+    <!--
     <input type="checkbox" id="check">
     <label for="check">
         <i class="fa fa-bars" aria-hidden="true" id="btn"></i>
         <i class="fa fa-times-circle-o" aria-hidden="true" id="cancel"></i>
     </label>
+    -->
     <div class="sidebar">
         <header>TestOnline</header>
         <div class="info-photo">
@@ -26,11 +28,7 @@
             </div>
         <ul>
             <li><a href="{%url 'StuInfoPersonal' %}"><i class="fa fa-user-o" aria-hidden="true"></i>个人信息</a></li>
-<<<<<<< HEAD
-            <li><a href="#"><i class="fa fa-paper-plane-o" aria-hidden="true"></i>考试信息</a></li>
-=======
             <li><a href="{%url 'StuExamInfo' %}"><i class="fa fa-paper-plane-o" aria-hidden="true"></i>考试信息</a></li>
->>>>>>> master
             <li><a href="#"><i class="fa fa-check-square-o" aria-hidden="true"></i>成绩查看</a></li>
             <li><a href="{% url 'index' %}"><i class="fa fa-times" aria-hidden="true"></i>退出</a></li>
         </ul>

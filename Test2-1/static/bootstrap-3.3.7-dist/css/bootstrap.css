@@ -1583,15 +1583,12 @@ pre code {
 }
 .container {
   /*padding-right: 15px;*/
-  padding-left: 60px;
-<<<<<<< HEAD
-  padding-top: 60px;
-=======
+  /*padding-left: 60px;
   padding-top: 0px;
->>>>>>> master
   margin-right: auto;
-  margin-left: auto;
-
+  margin-left: auto;*/
+  position: relative;
+  left: 250px;
 }
 @media (min-width: 768px) {
   .container {
@@ -2461,8 +2458,6 @@ table th[class*="col-"] {
 .table-hover > tbody > tr.danger:hover > th {
   background-color: #ebcccc;
 }
-<<<<<<< HEAD
-=======
 /*自己添加*/
 .table > thead > tr > td.examinfo,
 .table > tbody > tr > td.examinfo,
@@ -2489,7 +2484,6 @@ table th[class*="col-"] {
   background-color: #faf2cc;
 }
 /*自己添加*/
->>>>>>> master
 .table-responsive {
   min-height: .01%;
   overflow-x: auto;
