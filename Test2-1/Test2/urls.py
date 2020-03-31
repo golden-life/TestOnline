@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url, include
 from django.contrib import admin
-from users.views import RegisterView, LoginView, LogoutView, index,StuInfoPersonal, TeaInfoPersonal, TeacherLoginView,PaperView,StuExamInfo
+from users.views import RegisterView, LoginView, LogoutView, index,StuInfoPersonal, TeaInfoPersonal, TeacherLoginView,PaperView,StuExamInfo,StuGradeInfo
 
 urlpatterns = [
     # 管理员登陆
@@ -31,6 +31,7 @@ urlpatterns = [
     path('teacherlogin/', TeacherLoginView.as_view(), name='teacherlogin'),  # 老师登录
     path('login/personal/', StuInfoPersonal, name="StuInfoPersonal"),  # 学生的个人信息 
     path('login/StuExamInfo/', StuExamInfo, name="StuExamInfo"),  # 学生的考试信息
+    path('login/StuGradeInfo/', StuGradeInfo, name="StuGradeInfo"),  # 学生的成绩信息
     path('teacherlogin/personal/', TeaInfoPersonal, name="TeaInfoPersonal"),  # 教师的个人信息
     path('login/StuExamInfo/StartExam', PaperView.StartExam, name="StartExam"),  # 学生开始考试
     # url('^StartExam/$',PaperView.StartExam),

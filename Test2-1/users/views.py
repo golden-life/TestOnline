@@ -164,6 +164,11 @@ def TeaInfoPersonal(request):
 def StuExamInfo(request):
     paper =Paper.objects.filter()
     return render(request, "stuexaminfo.html", {"paper": paper})
+
+
+def StuGradeInfo(request):
+    # grade =grade.objects.filter()
+    return render(request, "stugradeinfo.html")
     
 #考试
 class PaperView(View):

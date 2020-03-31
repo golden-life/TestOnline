@@ -2282,7 +2282,7 @@ th {
 }
 .table > thead > tr > th {
   vertical-align: bottom;
-  border-bottom: 2px solid #ddd;
+  /*border-bottom: 2px solid #ddd;*/
   text-align: center;
   font-size: 25px;
   color: #0a1e44;
@@ -2471,17 +2471,22 @@ table th[class*="col-"] {
 .table > thead > tr.examinfo > th,
 .table > tbody > tr.examinfo > th,
 .table > tfoot > tr.examinfo > th {
-  background-color: #fffa65;
-  font-size: 20px;
+  background-color: #ffffff;
+  font-size: 24px;
   font-family: serif;
   text-align: center;
+  border-top: 2px solid #000;
+  border-bottom: 2px solid #000;
+  border-left: 2px solid #000;
+  border-right: 2px solid #000;
+
 }
 .table-hover > tbody > tr > td.examinfo:hover,
 .table-hover > tbody > tr > th.examinfo:hover,
 .table-hover > tbody > tr.examinfo:hover > td,
 .table-hover > tbody > tr:hover > .examinfo,
 .table-hover > tbody > tr.examinfo:hover > th {
-  background-color: #faf2cc;
+  background-color: #ffffff;
 }
 /*自己添加*/
 .table-responsive {
