@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 80019
 File Encoding         : 65001
 
-Date: 2020-03-29 23:14:38
+Date: 2020-04-01 22:37:41
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -147,9 +147,9 @@ CREATE TABLE `course` (
 -- ----------------------------
 -- Records of course
 -- ----------------------------
-INSERT INTO `course` VALUES ('1', '其他', '其他');
-INSERT INTO `course` VALUES ('2', '软件工程', '计科、信安');
-INSERT INTO `course` VALUES ('3', '软件安全', '信安');
+INSERT INTO `course` VALUES ('1', '其他', '测试');
+INSERT INTO `course` VALUES ('2', '软件安全', '信安');
+INSERT INTO `course` VALUES ('3', '软件工程', '信安、计科');
 INSERT INTO `course` VALUES ('4', '网络安全', '信安');
 
 -- ----------------------------
@@ -215,31 +215,30 @@ CREATE TABLE `django_migrations` (
   `name` varchar(255) NOT NULL,
   `applied` datetime(6) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- ----------------------------
 -- Records of django_migrations
 -- ----------------------------
-INSERT INTO `django_migrations` VALUES ('1', 'contenttypes', '0001_initial', '2020-03-28 06:42:45.315304');
-INSERT INTO `django_migrations` VALUES ('2', 'contenttypes', '0002_remove_content_type_name', '2020-03-28 06:42:45.415070');
-INSERT INTO `django_migrations` VALUES ('3', 'auth', '0001_initial', '2020-03-28 06:42:45.493826');
-INSERT INTO `django_migrations` VALUES ('4', 'auth', '0002_alter_permission_name_max_length', '2020-03-28 06:42:45.735181');
-INSERT INTO `django_migrations` VALUES ('5', 'auth', '0003_alter_user_email_max_length', '2020-03-28 06:42:45.743160');
-INSERT INTO `django_migrations` VALUES ('6', 'auth', '0004_alter_user_username_opts', '2020-03-28 06:42:45.751171');
-INSERT INTO `django_migrations` VALUES ('7', 'auth', '0005_alter_user_last_login_null', '2020-03-28 06:42:45.758119');
-INSERT INTO `django_migrations` VALUES ('8', 'auth', '0006_require_contenttypes_0002', '2020-03-28 06:42:45.762107');
-INSERT INTO `django_migrations` VALUES ('9', 'auth', '0007_alter_validators_add_error_messages', '2020-03-28 06:42:45.769089');
-INSERT INTO `django_migrations` VALUES ('10', 'auth', '0008_alter_user_username_max_length', '2020-03-28 06:42:45.778100');
-INSERT INTO `django_migrations` VALUES ('11', 'auth', '0009_alter_user_last_name_max_length', '2020-03-28 06:42:45.786077');
-INSERT INTO `django_migrations` VALUES ('12', 'auth', '0010_alter_group_name_max_length', '2020-03-28 06:42:45.803001');
-INSERT INTO `django_migrations` VALUES ('13', 'auth', '0011_update_proxy_permissions', '2020-03-28 06:42:45.813968');
-INSERT INTO `django_migrations` VALUES ('14', 'users', '0001_initial', '2020-03-28 06:42:46.054325');
-INSERT INTO `django_migrations` VALUES ('15', 'admin', '0001_initial', '2020-03-28 06:42:46.525100');
-INSERT INTO `django_migrations` VALUES ('16', 'admin', '0002_logentry_remove_auto_add', '2020-03-28 06:42:46.621808');
-INSERT INTO `django_migrations` VALUES ('17', 'admin', '0003_logentry_add_action_flag_choices', '2020-03-28 06:42:46.631782');
-INSERT INTO `django_migrations` VALUES ('18', 'captcha', '0001_initial', '2020-03-28 06:42:46.664694');
-INSERT INTO `django_migrations` VALUES ('19', 'sessions', '0001_initial', '2020-03-28 06:42:46.690671');
-INSERT INTO `django_migrations` VALUES ('20', 'users', '0002_auto_20200328_1537', '2020-03-28 07:37:36.924695');
+INSERT INTO `django_migrations` VALUES ('1', 'contenttypes', '0001_initial', '2020-04-01 16:32:15.316236');
+INSERT INTO `django_migrations` VALUES ('2', 'contenttypes', '0002_remove_content_type_name', '2020-04-01 16:32:15.391036');
+INSERT INTO `django_migrations` VALUES ('3', 'auth', '0001_initial', '2020-04-01 16:32:15.475810');
+INSERT INTO `django_migrations` VALUES ('4', 'auth', '0002_alter_permission_name_max_length', '2020-04-01 16:32:15.692245');
+INSERT INTO `django_migrations` VALUES ('5', 'auth', '0003_alter_user_email_max_length', '2020-04-01 16:32:15.700209');
+INSERT INTO `django_migrations` VALUES ('6', 'auth', '0004_alter_user_username_opts', '2020-04-01 16:32:15.709219');
+INSERT INTO `django_migrations` VALUES ('7', 'auth', '0005_alter_user_last_login_null', '2020-04-01 16:32:15.717164');
+INSERT INTO `django_migrations` VALUES ('8', 'auth', '0006_require_contenttypes_0002', '2020-04-01 16:32:15.722151');
+INSERT INTO `django_migrations` VALUES ('9', 'auth', '0007_alter_validators_add_error_messages', '2020-04-01 16:32:15.729132');
+INSERT INTO `django_migrations` VALUES ('10', 'auth', '0008_alter_user_username_max_length', '2020-04-01 16:32:15.737111');
+INSERT INTO `django_migrations` VALUES ('11', 'auth', '0009_alter_user_last_name_max_length', '2020-04-01 16:32:15.748083');
+INSERT INTO `django_migrations` VALUES ('12', 'auth', '0010_alter_group_name_max_length', '2020-04-01 16:32:15.765052');
+INSERT INTO `django_migrations` VALUES ('13', 'auth', '0011_update_proxy_permissions', '2020-04-01 16:32:15.774012');
+INSERT INTO `django_migrations` VALUES ('14', 'users', '0001_initial', '2020-04-01 16:32:16.045288');
+INSERT INTO `django_migrations` VALUES ('15', 'admin', '0001_initial', '2020-04-01 16:32:16.707552');
+INSERT INTO `django_migrations` VALUES ('16', 'admin', '0002_logentry_remove_auto_add', '2020-04-01 16:32:16.880056');
+INSERT INTO `django_migrations` VALUES ('17', 'admin', '0003_logentry_add_action_flag_choices', '2020-04-01 16:32:16.901006');
+INSERT INTO `django_migrations` VALUES ('18', 'captcha', '0001_initial', '2020-04-01 16:32:16.943886');
+INSERT INTO `django_migrations` VALUES ('19', 'sessions', '0001_initial', '2020-04-01 16:32:16.968818');
 
 -- ----------------------------
 -- Table structure for django_session
@@ -256,6 +255,7 @@ CREATE TABLE `django_session` (
 -- ----------------------------
 -- Records of django_session
 -- ----------------------------
+INSERT INTO `django_session` VALUES ('q4aa0h9v9tiz2fxe4ksxc69nl8bwzok8', 'NGFhNDI2ZjZmZmI4YmU3NzIzMzIwNGZlMTY1ZDFjMjYyNTU4NmRjMTp7InNpZCI6Ijk1MDAxIiwicGFzc3dvcmQiOiJlMTBhZGMzOTQ5YmE1OWFiYmU1NmUwNTdmMjBmODgzZSIsIm5hbWUiOiJcdTU0NjhcdTVmYzNcdTYwMjEiLCJzY2xhc3MiOiIxNzA0MjAxIiwic2RlcHQiOiJcdThiYTFcdTdiOTdcdTY3M2FcdTc5ZDFcdTViNjZcdTRlMGVcdTYyODBcdTY3MmZcdTViNjZcdTk2NjIiLCJlbWFpbCI6IjEyMzQ1NkBxcS5jb20ifQ==', '2020-04-15 21:51:57.240635');
 
 -- ----------------------------
 -- Table structure for grade
@@ -265,15 +265,24 @@ CREATE TABLE `grade` (
   `id` int NOT NULL AUTO_INCREMENT,
   `exam_name` varchar(100) NOT NULL,
   `grade` int NOT NULL,
+  `exam_time` datetime(6) NOT NULL,
+  `course_id` int DEFAULT NULL,
   `stu_id` varchar(20) NOT NULL,
   PRIMARY KEY (`id`),
+  KEY `grade_course_id_57ca325c_fk_course_id` (`course_id`),
   KEY `grade_stu_id_a0080686_fk_student_sid` (`stu_id`),
+  CONSTRAINT `grade_course_id_57ca325c_fk_course_id` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`),
   CONSTRAINT `grade_stu_id_a0080686_fk_student_sid` FOREIGN KEY (`stu_id`) REFERENCES `student` (`sid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- ----------------------------
 -- Records of grade
 -- ----------------------------
+INSERT INTO `grade` VALUES ('1', 'test1', '2', '2020-04-01 16:54:09.993351', '1', '95001');
+INSERT INTO `grade` VALUES ('2', 'test1', '2', '2020-04-01 21:46:51.250543', '1', '95001');
+INSERT INTO `grade` VALUES ('3', 'test1', '1', '2020-04-01 21:52:15.011965', '1', '95001');
+INSERT INTO `grade` VALUES ('4', 'test1', '3', '2020-04-01 22:23:41.509500', '1', '95001');
+INSERT INTO `grade` VALUES ('5', 'test1', '1', '2020-04-01 22:32:08.265220', '1', '95001');
 
 -- ----------------------------
 -- Table structure for paper
@@ -289,10 +298,10 @@ CREATE TABLE `paper` (
   `judgment_score` int NOT NULL,
   `multiple_choice_num` int NOT NULL,
   `multiple_choice_score` int NOT NULL,
+  `total_num` int NOT NULL,
   `total_score` int NOT NULL,
   `exam_time` int NOT NULL,
   `course_id` int NOT NULL,
-  `total_num` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `paper_course_id_de01caa5_fk_course_id` (`course_id`),
   CONSTRAINT `paper_course_id_de01caa5_fk_course_id` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`)
@@ -301,8 +310,8 @@ CREATE TABLE `paper` (
 -- ----------------------------
 -- Records of paper
 -- ----------------------------
-INSERT INTO `paper` VALUES ('1', 'test1', '2020-03-28', '3', '3', '0', '0', '0', '0', '3', '40', '1', '3');
-INSERT INTO `paper` VALUES ('2', 'test2', '2020-03-28', '2', '2', '0', '0', '0', '0', '2', '30', '3', '2');
+INSERT INTO `paper` VALUES ('1', 'test1', '2020-04-01', '4', '4', '0', '0', '0', '0', '4', '4', '40', '1');
+INSERT INTO `paper` VALUES ('2', 'test2', '2020-04-01', '2', '3', '0', '0', '0', '0', '2', '3', '20', '2');
 
 -- ----------------------------
 -- Table structure for paper_pid
@@ -317,16 +326,17 @@ CREATE TABLE `paper_pid` (
   KEY `paper_pid_question_id_066d7dbd_fk_question_id` (`question_id`),
   CONSTRAINT `paper_pid_paper_id_56658225_fk_paper_id` FOREIGN KEY (`paper_id`) REFERENCES `paper` (`id`),
   CONSTRAINT `paper_pid_question_id_066d7dbd_fk_question_id` FOREIGN KEY (`question_id`) REFERENCES `question` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- ----------------------------
 -- Records of paper_pid
 -- ----------------------------
 INSERT INTO `paper_pid` VALUES ('1', '1', '1');
 INSERT INTO `paper_pid` VALUES ('2', '1', '2');
-INSERT INTO `paper_pid` VALUES ('3', '1', '4');
-INSERT INTO `paper_pid` VALUES ('4', '2', '3');
+INSERT INTO `paper_pid` VALUES ('3', '1', '3');
+INSERT INTO `paper_pid` VALUES ('4', '1', '4');
 INSERT INTO `paper_pid` VALUES ('5', '2', '5');
+INSERT INTO `paper_pid` VALUES ('6', '2', '6');
 
 -- ----------------------------
 -- Table structure for question
@@ -352,16 +362,17 @@ CREATE TABLE `question` (
   PRIMARY KEY (`id`),
   KEY `question_course_id_d8bcc122_fk_course_id` (`course_id`),
   CONSTRAINT `question_course_id_d8bcc122_fk_course_id` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- ----------------------------
 -- Records of question
 -- ----------------------------
-INSERT INTO `question` VALUES ('1', 'single_choice', '1+1=', 'A', '2', '3', '1', '0', null, null, null, null, '4', '1', '1', '1');
-INSERT INTO `question` VALUES ('2', 'single_choice', '8+9=', 'C', '8', '9', '17', '1', null, null, null, null, '4', '1', '1', '1');
-INSERT INTO `question` VALUES ('3', 'single_choice', '软件安全', 'B', 'segn', '答案', 'ererty', '想hndyh', null, null, null, null, '4', '2', '2', '3');
-INSERT INTO `question` VALUES ('4', 'single_choice', '5+6', 'D', '5', '6', '1', '11', null, null, null, null, '4', '1', '1', '1');
-INSERT INTO `question` VALUES ('5', 'single_choice', '病毒', 'C', 'rfrg', 'dbdgnb', '答案', 'thryn', null, null, null, null, '4', '2', '1', '3');
+INSERT INTO `question` VALUES ('1', 'single_choice', '1+1', 'A', '2', '3', '1', '0', null, null, null, null, '4', '1', '1', '1');
+INSERT INTO `question` VALUES ('2', 'single_choice', '7+8', 'C', '7', '8', '15', '1', null, null, null, null, '4', '1', '1', '1');
+INSERT INTO `question` VALUES ('3', 'single_choice', '5+6', 'B', '5', '11', '6', '4', null, null, null, null, '4', '1', '1', '1');
+INSERT INTO `question` VALUES ('4', 'single_choice', '5+9', 'D', '5', '9', '4', '14', null, null, null, null, '4', '1', '1', '1');
+INSERT INTO `question` VALUES ('5', 'single_choice', '软件安全', 'C', 'sgt', 'sbyrhytn', '答案', 'dhdrt', null, null, null, null, '4', '2', '2', '2');
+INSERT INTO `question` VALUES ('6', 'single_choice', '病毒', 'A', '答案', 'bhnf', 'thyt', 'thyh', null, null, null, null, '4', '1', '1', '2');
 
 -- ----------------------------
 -- Table structure for student
@@ -389,7 +400,7 @@ CREATE TABLE `student` (
 -- ----------------------------
 -- Records of student
 -- ----------------------------
-INSERT INTO `student` VALUES (null, '0', '', '', '', '0', '1', '2020-03-28 07:13:15.354069', '95001', 'e10adc3949ba59abbe56e057f20f883e', 'zxy', '1704201', '计算机科学与技术学院', '123456@qq.com');
+INSERT INTO `student` VALUES (null, '0', '', '', '', '0', '1', '2020-04-01 16:47:53.933968', '95001', 'e10adc3949ba59abbe56e057f20f883e', '周心怡', '1704201', '计算机科学与技术学院', '123456@qq.com');
 
 -- ----------------------------
 -- Table structure for student_groups
