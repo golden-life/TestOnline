@@ -54,14 +54,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!--{% for paper1 in paper%}   改这个地方   -->
+                        {% for i in grade%}   
                         <tr class="danger">
-                            <td>{{ 科目 }}</td>
-                            <td>{{ 试卷 }}</td>
-                            <td>{{ 试卷 }}</td>
-                            <td>{{ 成绩 }}</td>
+                            <td>{{ i.course.name }}</td>
+                            <td>{{ i.exam_name }}</td>
+                            <td>{{ i.exam_time }}</td>
+                            <td>{{ i.grade }}</td>
                         </tr>
-                        <!--{% endfor %}    改这个地方-->
+                        {% endfor %}
                     </tbody>
                 </table>
             </div>

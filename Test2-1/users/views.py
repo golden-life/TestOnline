@@ -167,8 +167,11 @@ def StuExamInfo(request):
 
 
 def StuGradeInfo(request):
-    # grade =grade.objects.filter()
-    return render(request, "stugradeinfo.html")
+    print('姓----名')
+    #stu=request.session()
+    print('姓名',request.session['name'])
+    grade =Grade.objects.filter(stu_id = request.session['sid'])
+    return render(request, "stugradeinfo.html",{"grade": grade})
     
 #考试
 class PaperView(View):
@@ -190,19 +193,26 @@ class PaperView(View):
             print('|学号|', sid, '试卷名称', papername)
             stu = Student.objects.get(sid=sid)
             print('学号',stu.sid,'姓名',stu.name)
-            paper = Paper.objects.filter(name=papername)
-            grade = Grade.objects.filter(stu=stu.sid)
-            question = Paper.objects.filter(name=papername).values("pid").values('id')
-            
+            paper = Paper.objects.get(name = papername)
+            #grade = Grade.objects.filter(stu=stu.sid)
+            question = paper.pid.all()
+            course = Course.objects.get(id=paper.course_id)
+            print('科目',course.name)
+            wrong_question = [] #记录错题
             exam_grade=0
             for i in question:
-                qid = str(i['id'])
+                qid = str(i.id)
                 ans = request.POST.get(qid)
-                print(qid+':'+ans+'|')
-                #okans = i['question_id'].answer
+                #print(qid+':'+ans+'|')
+                okans = i.answer
                 #print(qid+'::'+okans+'|')
-                #if ans==okans:
-                #    exam_grade += i['question_id'].score
-
-            #Grade.objects.create(stu_id=sid,exam_name=papername,grade=exam_grade)
-            #print(exam_grade)
+                if ans==okans:
+                    exam_grade += i.score
+                else:
+                    wrong_question.append(i)
+                    print('add')
+            wrong_question_now = tuple(wrong_question)
+            wrong_question_count = len(wrong_question_now)
+            Grade.objects.create(stu_id=sid,exam_name=papername,grade=exam_grade,course_id=course.id)
+            print(exam_grade)
+            return render(request,"score.html",{"grade":exam_grade, "wrong_question":wrong_question_now, "wrong_num":wrong_question_count})

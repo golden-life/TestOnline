@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>成绩</title>
+    <link href="/static/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet">
+    <!-- 必须在引入bootstarp.js之前引入 -->
+    <script src="/static/jquery-3.3.1.min.js"></script>
+    <script src="/static/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="/static/font-awesome-4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/test.css">
+<style>
+.hasBeenAnswer {
+	background: #5d9cec;
+	color:#fff;
+}
+</style>
+</head>
+<body>
+    <div>
+        <div>
+            <div>
+                <hl>您的成绩为：{{grade}}</hl>
+            </div>
+        </div>
+        {% if wrong_question_count == 0 %}
+            <div>
+                <div>
+                    <hl>恭喜您全部正确！</hl>
+                </div>
+            </div>
+        {% else %}
+        <div>
+            <div>
+                <hl>您的错题是：</hl>
+            </div>
+            {% for i in wrong_question %}
+            <li id="{{ i.id }}">
+                <div>
+                    <i>{{ forloop.counter}}</i><span>({{ i.score }}分)</span>
+                    <font>{{ i.content }}</font>
+                </div>
+
+                <div>
+                    <ul>
+                        <li>
+                            <label>
+                                A.<p class="ue" style="display: inline;">{{ i.choice_a }}</p>
+                            </label>
+                        </li>
+
+                        <li>
+                            <label>
+                                B.<p class="ue" style="display: inline;">{{ i.choice_b }}</p>
+                            </label>
+                        </li>
+
+                        <li>
+                            <label>
+                                C.<p class="ue" style="display: inline;">{{ i.choice_c }}</p>
+                            </label>
+                        </li>
+
+                        <li>
+                            <label>
+                                D.<p class="ue" style="display: inline;">{{ i.choice_d }}</p>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <span>正确答案：{{i.answer}}</span>
+                </div>
+            </li>
+            {% endfor %}
+        </div>  
+        {% endif %}  
+    </div>
+</body>

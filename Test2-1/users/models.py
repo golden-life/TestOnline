@@ -122,6 +122,8 @@ class Grade(models.Model):
     stu=models.ForeignKey(Student,verbose_name=u"学生",on_delete=models.CASCADE,default='')#添加外键
     exam_name=models.CharField(u'试卷名称',max_length=100,default='')
     grade=models.IntegerField(verbose_name=u'考试成绩', default=0)
+    exam_time = models.DateTimeField(default=datetime.now, verbose_name=u"考试时间")
+    course = models.ForeignKey(Course, verbose_name=u"科目", default=1, on_delete=models.CASCADE, null=True)
 
     class Meta:
         db_table='grade'

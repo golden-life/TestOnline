@@ -35,7 +35,7 @@ urlpatterns = [
     path('teacherlogin/personal/', TeaInfoPersonal, name="TeaInfoPersonal"),  # 教师的个人信息
     path('login/StuExamInfo/StartExam', PaperView.StartExam, name="StartExam"),  # 学生开始考试
     # url('^StartExam/$',PaperView.StartExam),
-     url('^calGrade/$',PaperView.calGrade),
+    url('^calGrade/$',PaperView.calGrade),
 ]
 
 
