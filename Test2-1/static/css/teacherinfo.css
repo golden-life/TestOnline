@@ -9,8 +9,8 @@ body {
 }
 .sidebar{
     position: fixed;
-    left: 0;
-    /*left: -250px;*/
+    /*left: 0;*/
+    left: -250px;
     width: 250px;
     height: 100%;
     background: #0a1e44;

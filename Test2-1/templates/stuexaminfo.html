@@ -17,13 +17,11 @@
     <title>学生考试信息</title>
 </head>
 <body>
-    <!--
     <input type="checkbox" id="check">
     <label for="check">
         <i class="fa fa-bars" aria-hidden="true" id="btn"></i>
         <i class="fa fa-times-circle-o" aria-hidden="true" id="cancel"></i>
     </label>
-    -->
     <div class="sidebar">
         <header>TestOnline</header>
         <div class="info-photo">
@@ -35,7 +33,7 @@
         <ul>
             <li><a href="{%url 'StuInfoPersonal' %}"><i class="fa fa-user-o" aria-hidden="true"></i>个人信息</a></li>
             <li><a href="{%url 'StuExamInfo' %}"><i class="fa fa-paper-plane-o" aria-hidden="true"></i>考试信息</a></li>
-            <li><a href="{%url 'StuGradeInfo' %}"><i class="fa fa-check-square-o" aria-hidden="true"></i>成绩查看</a></li>
+            <li><a href="#"><i class="fa fa-check-square-o" aria-hidden="true"></i>成绩查看</a></li>
             <li><a href="{% url 'index' %}"><i class="fa fa-times" aria-hidden="true"></i>退出</a></li>
         </ul>
     </div>
@@ -61,8 +59,7 @@
                             <td>{{ paper1.start_time }}</td>
                             <td>
                                 <a href="{%url 'StartExam'%}?sid={{ request.session.sid }}&papername={{ paper1.name }}">
-                                    <button class="btn btn-primary" id="toExam+{{ paper1.subject }}">开始考试</button>
-                                    <!--<button id="toExam+{{ paper1.name }}">开始考试</button>-->
+                                    <button id="toExam+{{ paper1.name }}">开始考试</button>
                                 </a>
                             </td>
                         </tr>

@@ -12,7 +12,7 @@ DEPT = (
 )
 
 
-class Student(AbstractUser):  # 继承，学生表在继承的基础上包含以下内容
+class Student(models.Model):  # 继承，学生表在继承的基础上包含以下内容
     sid = models.CharField('学号', max_length=20, primary_key=True)  # 学号
     password = models.CharField('密码', max_length=40, default='123456')  # 密码
     name = models.CharField('姓名', max_length=20)  # 姓名
@@ -122,8 +122,6 @@ class Grade(models.Model):
     stu=models.ForeignKey(Student,verbose_name=u"学生",on_delete=models.CASCADE,default='')#添加外键
     exam_name=models.CharField(u'试卷名称',max_length=100,default='')
     grade=models.IntegerField(verbose_name=u'考试成绩', default=0)
-    exam_time = models.DateTimeField(default=datetime.now, verbose_name=u"考试时间")
-    course = models.ForeignKey(Course, verbose_name=u"科目", default=1, on_delete=models.CASCADE, null=True)
 
     class Meta:
         db_table='grade'
