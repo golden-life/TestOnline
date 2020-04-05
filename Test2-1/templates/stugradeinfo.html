@@ -40,6 +40,37 @@
         </ul>
     </div>
     <section>
+        
+            <div class="container">
+                <div class="tab-content">
+                    <div id="home" class="container tab-pane active"><br>
+                        <h3>成绩信息</h3>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>考试科目</th>
+                                    <th>试卷名称</th>
+                                    <th>考试时间</th>
+                                    <th>成绩</th>
+                                </tr>
+                            </thead>
+                            
+                            <tbody>
+                                {% for i in grade%}   
+                                <tr class="danger">
+                                    <td>{{ i.course.name }}</td>
+                                    <td>{{ i.exam_name }}</td>
+                                    <td>{{ i.exam_time }}</td>
+                                    <td>{{ i.grade }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        
+        <!--
     <div class="container">
         <div class="tab-content">
             <div id="home" class="container tab-pane active"><br>
@@ -66,7 +97,7 @@
                 </table>
             </div>
         </div>
-    </div>
+    </div>-->
     </section>
 </body>
 </html>

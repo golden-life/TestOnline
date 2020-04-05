@@ -20,63 +20,75 @@
 </style>
 </head>
 <body>
-    <div>
-        <div>
+    
+    <nav class="navbar navbar-expand-sm bg-light navbar-light ">
+        <ul class="navbar-nav">
+            <li style="position: absolute;left: 70px; font-size: 30px;color: #ffffff">您的成绩为：{{grade}}</li>
+            <a href="{%url 'StuExamInfo' %}" style="position: absolute;right: 70px; font-size: 30px;color: #ffffff">返回</a>
+        </ul>
+    </nav>
+    {% if wrong_num == 0 %}
+            <hl style="font-size: 45px;color: #ff0000;">恭喜您全部正确！</hl>
             <div>
-                <hl>您的成绩为：{{grade}}</hl>
+                <img src="/static/img/13.jpg">
             </div>
-        </div>
-        {% if wrong_question_count == 0 %}
-            <div>
-                <div>
-                    <hl>恭喜您全部正确！</hl>
+    {% else %}
+    <!--<div class="main">-->
+        <div class="test_main">
+            <div class="test">
+                <div class="test_content">
+                    <div class="test_content_title">
+                        <h2>您的错题是：</h2>
+                    </div>
                 </div>
-            </div>
-        {% else %}
-        <div>
-            <div>
-                <hl>您的错题是：</hl>
-            </div>
-            {% for i in wrong_question %}
-            <li id="{{ i.id }}">
-                <div>
-                    <i>{{ forloop.counter}}</i><span>({{ i.score }}分)</span>
-                    <font>{{ i.content }}</font>
-                </div>
-
-                <div>
+                <div class="test_content_nr">
                     <ul>
-                        <li>
-                            <label>
-                                A.<p class="ue" style="display: inline;">{{ i.choice_a }}</p>
-                            </label>
-                        </li>
+                        {% for i in wrong_question %}
+                        <li id="{{ i.id }}">
+                            <div class="test_content_nr_tt">
+                                <i>{{ forloop.counter}}</i><span>({{ i.score }}分)</span>
+                                <font>{{ i.content }}</font>
+                            </div>
 
-                        <li>
-                            <label>
-                                B.<p class="ue" style="display: inline;">{{ i.choice_b }}</p>
-                            </label>
-                        </li>
+                            <div class="test_content_nr_main">
+                                <ul>
+                                    <li class="option">
+                                        <label>
+                                            A.<p class="ue" style="display: inline;">{{ i.choice_a }}</p>
+                                        </label>
+                                    </li>
 
-                        <li>
-                            <label>
-                                C.<p class="ue" style="display: inline;">{{ i.choice_c }}</p>
-                            </label>
-                        </li>
+                                    <li class="option">
+                                        <label>
+                                            B.<p class="ue" style="display: inline;">{{ i.choice_b }}</p>
+                                        </label>
+                                    </li>
 
-                        <li>
-                            <label>
-                                D.<p class="ue" style="display: inline;">{{ i.choice_d }}</p>
-                            </label>
+                                    <li class="option">
+                                        <label>
+                                            C.<p class="ue" style="display: inline;">{{ i.choice_c }}</p>
+                                        </label>
+                                    </li>
+
+                                    <li class="option">
+                                        <label>
+                                            D.<p class="ue" style="display: inline;">{{ i.choice_d }}</p>
+                                        </label>
+                                    </li>
+
+                                </ul>
+                                
+                                <span style="color: #ff0000; font-size:18px; font-weight:bold;">正确答案：{{i.answer}}</span>
+                            </div>
                         </li>
+                        {% endfor %}   
                     </ul>
                 </div>
-                <div>
-                    <span>正确答案：{{i.answer}}</span>
-                </div>
-            </li>
-            {% endfor %}
-        </div>  
-        {% endif %}  
-    </div>
+            </div>
+            {% endif %}
+        </div>
+    
+    <!--</div>-->
+    
 </body>
+</html>
