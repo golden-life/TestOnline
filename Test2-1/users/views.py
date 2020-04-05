@@ -151,6 +151,11 @@ class TeacherLoginView(View):
                 return render(request, "teacherlogin.html", {"msg": tea_passw, "login_form": login_form})
         else:
             return render(request, "teacherlogin.html", {"login_form": login_form})
+    
+    #教师查看成绩
+    def ShowGrade(request):
+        print('姓名',request.session['sdept'])
+        
 
 
 def StuInfoPersonal(request):
