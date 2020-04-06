@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/static/font-awesome-4.7.0/css/font-awesome.css">
     <link rel="stylesheet" href="/static/css/main.css">
     <link rel="stylesheet" href="/static/css/test.css">
+    <link rel="stylesheet" href="/static/css/iconfont.css">
 <style>
 .hasBeenAnswer {
 	background: #5d9cec;
@@ -166,35 +167,20 @@
     </div>
     <div class="foot"></div>
 </div>
-
+<script src="/static/jquery-1.11.3.min.js"></script>
+<script src="/static/jquery.easy-pie-chart.js"></script>
 <script>
-	/*window.jQuery(function($) {
-		"use strict";
-
-		$('time').countDown({
-			with_separators : false
-		});
-		$('.alt-1').countDown({
-			css_class : 'countdown-alt-1'
-		});
-		$('.alt-2').countDown({
-			css_class : 'countdown-alt-2'
-		});
-
-	});*/
-
-
-	{% comment %}$(function() {
-		$('li.option label').click(function() {
+	$(function() {
+		$('li.option input').click(function() {
 		debugger;
 			var examId = $(this).closest('.test_content_nr_main').closest('li').attr('id'); // 得到题目ID
 			var cardLi = $('a[href=#' + examId + ']'); // 根据题目ID找到对应答题卡
 			// 设置已答题
 			if(!cardLi.hasClass('hasBeenAnswer')){
 				cardLi.addClass('hasBeenAnswer');
-			}});
+			}
+        });
 	});
-{% endcomment %}
 </script>
 
 </body>

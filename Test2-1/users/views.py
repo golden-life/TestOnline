@@ -218,6 +218,7 @@ class PaperView(View):
                     print('add')
             wrong_question_now = tuple(wrong_question)
             wrong_question_count = len(wrong_question_now)
+            print(wrong_question_count)
             Grade.objects.create(stu_id=sid,exam_name=papername,grade=exam_grade,course_id=course.id)
             print(exam_grade)
             return render(request,"score.html",{"grade":exam_grade, "wrong_question":wrong_question_now, "wrong_num":wrong_question_count})
