@@ -3,7 +3,7 @@ from django.views.generic.base import View
 from .form import RegisterForm, LoginForm
 from django.shortcuts import render, redirect
 from django.contrib.auth.hashers import make_password, check_password
-from .models import Student, Teacher,Course,Question,Paper,Grade
+from .models import Student, Teacher,Course,Question,Paper,Grade,Sdept
 from django.contrib.auth import authenticate, login, logout
 title = "在线考试系统"
 
@@ -46,6 +46,7 @@ class RegisterView(View):
                 stu_name = request.POST.get("name", "")
                 stu_sclass = request.POST.get("sclass", "")
                 stu_sdept = request.POST.get("sdept", "")
+                sdept = Sdept.objects.get(name = stu_sdept)
                 stu_email = request.POST.get("email", "")
 
                 stu_profile = Student()
@@ -54,7 +55,7 @@ class RegisterView(View):
                 stu_profile.password = md5(stu_password)
                 stu_profile.name = stu_name
                 stu_profile.sclass = stu_sclass
-                stu_profile.sdept = stu_sdept
+                stu_profile.sdept_id = sdept.id
                 stu_profile.email = stu_email
                 stu_profile.is_active = True  # 用户激活状态，目前不太清楚用处
                 stu_profile.save()
@@ -92,14 +93,16 @@ class LoginView(View):
             # if check_password(stu_passw, stu.password):
             if stu_password == stu.password:
                 # login(request, user)
+                print(5)
                 request.session['sid'] = stu.sid
                 request.session['password'] = stu.password
                 request.session['name'] = stu.name
                 request.session['sclass'] = stu.sclass
-                request.session['sdept'] = stu.sdept
+                sdept = Sdept.objects.get(id = stu.sdept_id)
+                request.session['sdept'] = sdept.name
                 request.session['email'] = stu.email
-                papers = Paper.objects.filter()
-                return render(request, "studentinfo.html", {"stu": stu,"papers": papers})
+                #papers = Paper.objects.filter()
+                return render(request, "studentinfo.html", {"stu": stu})
             else:
                 # u"用户名或密码错误"
                 return render(request, "login.html", {"msg": stu_passw, "login_form": login_form})
@@ -143,7 +146,8 @@ class TeacherLoginView(View):
                 request.session['sid'] = tea.sid
                 request.session['password'] = tea.password
                 request.session['name'] = tea.name
-                request.session['sdept'] = tea.sdept
+                sdept = Sdept.objects.get(id = tea.sdept_id)
+                request.session['sdept'] = sdept.name
                 request.session['email'] = tea.email
                 return render(request, "teacherinfo.html", {"tea": tea})
             else:
@@ -152,12 +156,19 @@ class TeacherLoginView(View):
         else:
             return render(request, "teacherlogin.html", {"login_form": login_form})
     
-    #教师查看成绩
-    def ShowGrade(request):
-        print('姓名',request.session['sdept'])
+#教师查看成绩
+def TeaShowGrade(request):
+    print("----")
+    print('姓名',request.session['sdept'])
+    sdept = Sdept.objects.get(name = request.session['sdept'])
+    grade = Grade.objects.filter(stu_id__sdept_id=sdept.id) #查询该学院中所有学生的成绩
+    #for i in grade:
+        #print("examname:",i.exam_name,"sid",i.stu_id,"grade",i.grade)
+    return render(request, "teashowgrade.html", {"grade": grade})
+
+
+
         
-
-
 def StuInfoPersonal(request):
     return render(request, 'stuinfo-personal.html')
 

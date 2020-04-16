@@ -11,13 +11,26 @@ DEPT = (
     ('理学院', '理学院'),
 )
 
+#学院表
+class Sdept(models.Model):
+    name = models.CharField(max_length=100, verbose_name=u"学院名",choices=DEPT, null=True)
+    decs = models.CharField(max_length=500, verbose_name=u"学院说明", default="",null=True)
+
+    class Meta:
+        db_table = 'sdept'
+        verbose_name = u'学院'
+        verbose_name_plural = verbose_name
+
+    def __unicode__(self):
+        return self.name
 
 class Student(AbstractUser):  # 继承，学生表在继承的基础上包含以下内容
     sid = models.CharField('学号', max_length=20, primary_key=True)  # 学号
     password = models.CharField('密码', max_length=40, default='123456')  # 密码
     name = models.CharField('姓名', max_length=20)  # 姓名
     sclass = models.CharField('班号', max_length=20)  # 班号
-    sdept = models.CharField('学院', max_length=20, choices=DEPT, default=None)  # 学院
+    #sdept = models.CharField('学院', max_length=20, choices=DEPT, default=None)  
+    sdept = models.ForeignKey(Sdept, verbose_name=u"学院", on_delete=models.CASCADE, null=True)  # 学院
     email = models.EmailField('邮箱', default=None)  # 邮箱
 
     class Meta:  # 表名
@@ -32,7 +45,7 @@ class Student(AbstractUser):  # 继承，学生表在继承的基础上包含以
 class Teacher(models.Model):
     sid = models.CharField("教工号", max_length=20, primary_key=True)
     name = models.CharField('姓名', max_length=20)
-    sdept = models.CharField('学院', max_length=20, choices=DEPT, default=None)
+    sdept = models.ForeignKey(Sdept, verbose_name=u"学院", on_delete=models.CASCADE)  # 学院
     email = models.EmailField('邮箱', default=None)
     password = models.CharField('密码', max_length=40, default='000000')
 
@@ -46,8 +59,8 @@ class Teacher(models.Model):
 
 #科目表
 class Course(models.Model):
-    name = models.CharField(max_length=100, verbose_name=u"科目名", default="",null=True)
-    decs = models.CharField(max_length=500, verbose_name=u"科目说明", default="")
+    name = models.CharField(max_length=100, verbose_name=u"科目名")
+    decs = models.CharField(max_length=500, verbose_name=u"科目说明", default="",null=True)
 
     class Meta:
         db_table = 'course'
