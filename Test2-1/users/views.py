@@ -59,9 +59,9 @@ class RegisterView(View):
                 stu_profile.email = stu_email
                 stu_profile.is_active = True  # 用户激活状态，目前不太清楚用处
                 stu_profile.save()
-                return render(request, "register.html", {'script': "alert", 'msg': u"注册成功"})
+                return render(request, "register.html", {'script': "alert", 'msg0': u"注册成功"})
         else:
-            return render(request, 'register.html', {'register_form': register_form, "title": title})
+            return render(request, 'register.html', {"msg":"输入不能为空！", 'register_form': register_form, "title": title})
             # 把register_form传给前端是因为 这里包含错误信息,需要在前端显示
 
 
@@ -84,30 +84,34 @@ class LoginView(View):
             stu_id = request.POST.get("sid", "")
             print(4)
             stu_passw = request.POST.get("password", "")  # 获取从前端输入的密码
-            stu = Student.objects.get(sid=stu_id)  # 得到数据库中该学号对应的那条记录
-            stu_password = md5(stu_passw)  # 对前端输入的密码进行加密
-            print(stu_id)
+            stu_list = Student.objects.filter(sid=stu_id)  # 得到数据库中该学号对应的那条记录,列表形式
+            if stu_list:
+                stu = stu_list[0]
+                stu_password = md5(stu_passw)  # 对前端输入的密码进行加密
+                print(stu_id)
             # user = authenticate(username=stu_id, password=stu_password)
             # print(user)
             # if user is not None:
             # if check_password(stu_passw, stu.password):
-            if stu_password == stu.password:
+                if stu_password == stu.password:
                 # login(request, user)
-                print(5)
-                request.session['sid'] = stu.sid
-                request.session['password'] = stu.password
-                request.session['name'] = stu.name
-                request.session['sclass'] = stu.sclass
-                sdept = Sdept.objects.get(id = stu.sdept_id)
-                request.session['sdept'] = sdept.name
-                request.session['email'] = stu.email
+                    print(5)
+                    request.session['sid'] = stu.sid
+                    request.session['password'] = stu.password
+                    request.session['name'] = stu.name
+                    request.session['sclass'] = stu.sclass
+                    sdept = Sdept.objects.get(id = stu.sdept_id)
+                    request.session['sdept'] = sdept.name
+                    request.session['email'] = stu.email
                 #papers = Paper.objects.filter()
-                return render(request, "studentinfo.html", {"stu": stu})
-            else:
+                    return render(request, "studentinfo.html", {"stu": stu})
+                else:
                 # u"用户名或密码错误"
-                return render(request, "login.html", {"msg": stu_passw, "login_form": login_form})
+                    return render(request, "login.html", {"msg": "密码错误！", "login_form": login_form})
+            else:
+                return render(request, "login.html", {"msg": "用户不存在！", "login_form": login_form})
         else:
-            return render(request, "login.html", {"login_form": login_form})
+            return render(request, "login.html", {"msg":"输入不能为空！", "login_form": login_form})
 
 
 class LogoutView(View):
@@ -133,28 +137,32 @@ class TeacherLoginView(View):
             tea_id = request.POST.get("sid", "")
             print(4)
             tea_passw = request.POST.get("password", "")  # 获取从前端输入的密码
-            tea = Teacher.objects.get(sid=tea_id)  # 得到数据库中该教工号对应的那条记录
-            # tea_password = md5(tea_passw)  # 对前端输入的密码进行加密
-            print(tea_id)
+            tea_list = Teacher.objects.filter(sid=tea_id)  # 得到数据库中该教工号对应的那条记录，列表形式
+            if tea_list:
+                tea=tea_list[0]
+                # tea_password = md5(tea_passw)  # 对前端输入的密码进行加密
+                print(tea_id)
             # user = authenticate(username=stu_id, password=stu_password)
             # print(user)
             # if user is not None:
             # if check_password(stu_passw, stu.password):
             # if tea_password == tea.password:
-            if tea_passw == tea.password:
+                if tea_passw == tea.password:
                 # login(request, user)
-                request.session['sid'] = tea.sid
-                request.session['password'] = tea.password
-                request.session['name'] = tea.name
-                sdept = Sdept.objects.get(id = tea.sdept_id)
-                request.session['sdept'] = sdept.name
-                request.session['email'] = tea.email
-                return render(request, "teacherinfo.html", {"tea": tea})
+                    request.session['sid'] = tea.sid
+                    request.session['password'] = tea.password
+                    request.session['name'] = tea.name
+                    sdept = Sdept.objects.get(id = tea.sdept_id)
+                    request.session['sdept'] = sdept.name
+                    request.session['email'] = tea.email
+                    return render(request, "teacherinfo.html", {"tea": tea})
+                else:
+                # u"密码错误"
+                    return render(request, "teacherlogin.html", {"msg": "密码错误！", "login_form": login_form})
             else:
-                # u"用户名或密码错误"
-                return render(request, "teacherlogin.html", {"msg": tea_passw, "login_form": login_form})
+                return render(request, "teacherlogin.html", {"msg": "用户不存在！", "login_form": login_form})
         else:
-            return render(request, "teacherlogin.html", {"login_form": login_form})
+            return render(request, "teacherlogin.html", {"msg": "输入不能为空！", "login_form": login_form})
     
 #教师查看成绩
 def TeaShowGrade(request):

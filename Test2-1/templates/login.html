@@ -19,6 +19,7 @@
         <h1>学生登录</h1>
         <input type="text" id="id_sid" name="sid" placeholder="学号">
         <input type="password" id="id_password" name="password" placeholder="密码">
+        <p class="one">{{msg}}</p>
         <input type="submit" name="" value="登录">
         <a href="{% url 'register' %}">还没有账号？前去注册</a>
         {% csrf_token %}

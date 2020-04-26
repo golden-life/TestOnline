@@ -7,6 +7,24 @@
     <title>学生注册</title>
     <link rel="stylesheet" href="../static/css/register.css">
     <link rel="stylesheet" href="../static/font-awesome-4.7.0/css/font-awesome.css">
+    <!--
+    <script>
+        function validate() {
+            var pwd1 = document.getElementById("pwd1").value;
+            var pwd2 = document.getElementById("pwd2").value;
+            if(pwd1 == pwd2) {
+                msg1="两次密码相同";
+                document.all["tishi"].innerHTML=msg1;
+                document.getElementById("submit").disabled = false;
+            }
+            else {
+                msg1="两次密码不相同";
+                document.all["tishi"].innerHTML=msg1;
+              document.getElementById("submit").disabled = true;
+            }
+        }
+    </script>
+    -->
 </head>
 <body>
     <div>
@@ -19,6 +37,12 @@
         <h1>学生注册</h1>
         <input type="text" id="id_sid" name="sid" placeholder="学号">
         <input type="password" id="id_password" name="password" placeholder="密码">
+        
+        <!--
+        <input type="password" id="pwd1" name="password" placeholder="密码">
+        <input type="password" id="pwd2" name="password1" placeholder="请再次输入密码" οnkeyup="validate()"><strong id="tishi"></strong>-->
+
+
         <input type="text" id="id_name" name="name" placeholder="姓名">
         <select name="sdept" id="id_sdept" onchange="document.getElementById('input').value=this.value">
             <option value="计算机科学与技术学院">计算机科学与技术学院</option>
@@ -28,14 +52,14 @@
         </select>
         <input type="text" id="id_sclass" name="sclass" placeholder="班号">
         <input type="text" id="id_email" name="email" placeholder="邮箱">
-        <input type="submit" name="" value="注册">
-        <div class="error">{% for key,error in register_form.errors.items %}
-                            {{ error }}
-                        {% endfor %}
-                        {{ msg }}
+        <p style="color: yellow;font-size: 20px;">{{msg}}</p>
+        <div class="error btns" id="jsEmailTips">
+            {{ msg0 }}
         </div>
+        <input type="submit" name="" value="注册">
         <a href="{% url 'login' %}">已经有账号？前去登录</a>
         {% csrf_token %}
     </form>
+
 </body>
 </html>

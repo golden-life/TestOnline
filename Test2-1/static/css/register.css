@@ -29,9 +29,18 @@ a{
     text-align: center;
 }
 .box h1{
-    color: white;
+    color: rgb(255, 255, 255);
     padding-top: 0px;
     text-transform: uppercase;
+}
+.box p.one{
+    margin: 20px auto;
+    font-size: 20px;
+    text-align: center;
+    color: yellow;
+    font-weight: 500;
+    /*border-style: solid;*/
+    width: 200px;
 }
 .box input[type = "text"],.box input[type = "password"]{
     border: 0;
@@ -94,6 +103,7 @@ a{
 .box select:focus{
     width: 280px;
 }
+
 .error{
     background: linear-gradient(to right, #eea2a2 0%, #bbc1bf 19%, #57c6e1 42%, #b49fda 79%, #7ac5d8 100%);
     color:#fff !important;

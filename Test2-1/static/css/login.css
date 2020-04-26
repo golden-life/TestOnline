@@ -30,6 +30,15 @@ a{
     margin-bottom: 50px;
     text-transform: uppercase;
 }
+.box p.one{
+    margin: 20px auto;
+    font-size: 20px;
+    text-align: center;
+    color: yellow;
+    font-weight: 500;
+    /*border-style: solid;*/
+    width: 200px;
+}
 .box input[type = "text"],.box input[type = "password"]{
     border: 0;
     background: none;
@@ -72,3 +81,4 @@ a{
 .box a{
     font-size: 15px;
 }
+

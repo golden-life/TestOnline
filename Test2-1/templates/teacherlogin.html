@@ -19,6 +19,7 @@
         <h1>教师登录</h1>
         <input type="text" id="id_sid" name="sid" placeholder="教工号">
         <input type="password" id="id_password" name="password" placeholder="密码">
+        <p class="one">{{msg}}</p>
         <input type="submit" name="" value="登录">
         {% csrf_token %}
     </form>
