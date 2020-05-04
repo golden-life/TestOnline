@@ -10,6 +10,7 @@
     <script src="/static/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
 
     <link rel="stylesheet" href="/static/css/teacherinfo.css">
+    <link rel="stylesheet" href="/static/css/studentinfo.css">
     <link rel="stylesheet" href="/static/font-awesome-4.7.0/css/font-awesome.css">
 
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
@@ -33,11 +34,11 @@
                 </div>
             </div>
         <ul>
-            <li><a href="{% url 'TeaInfoPersonal' %}"><i class="fa fa-user-o" aria-hidden="true"></i>个人信息</a></li>
-            <li><a href="#"><i class="fa fa-bar-chart" aria-hidden="true"></i>成绩统计</a></li>
-            <li><a href="{% url 'TeaShowGrade' %}"><i class="fa fa-check-square-o" aria-hidden="true"></i>成绩查看</a></li>
-            <li><a href="#"><i class="fa fa-file-text-o" aria-hidden="true"></i>组卷</a></li>
-            <li><a href="{% url 'index' %}"><i class="fa fa-times" aria-hidden="true"></i>退出</a></li>
+            <li><a href="{% url 'TeaInfoPersonal' %}">个人信息</a></li>
+            <li><a href="#">成绩统计</a></li>
+            <li><a href="{% url 'TeaShowGrade' %}">成绩查看</a></li>
+            <li><a href="#">组卷</a></li>
+            <li><a href="{% url 'index' %}">退出</a></li>
         </ul>
     </div>
     <section>
@@ -86,7 +87,7 @@
                     </thead>
                     <tbody>
                         {% for i in grade%}   
-                        <tr class="danger">
+                        <tr class="examinfo">
                             <td>{{ i.course.name }}</td>
                             <td>{{ i.exam_name }}</td>
                             <td>{{ i.stu.sid }}</td>

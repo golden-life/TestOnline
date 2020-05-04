@@ -33,10 +33,10 @@
                 </div>
             </div>
         <ul>
-            <li><a href="{%url 'StuInfoPersonal' %}"><i class="fa fa-user-o" aria-hidden="true"></i>个人信息</a></li>
-            <li><a href="{%url 'StuExamInfo' %}"><i class="fa fa-paper-plane-o" aria-hidden="true"></i>考试信息</a></li>
-            <li><a href="{%url 'StuGradeInfo' %}"><i class="fa fa-check-square-o" aria-hidden="true"></i>成绩查看</a></li>
-            <li><a href="{% url 'index' %}"><i class="fa fa-times" aria-hidden="true"></i>退出</a></li>
+            <li><a href="{%url 'StuInfoPersonal' %}">个人信息</a></li>
+            <li><a href="{%url 'StuExamInfo' %}">考试信息</a></li>
+            <li><a href="{%url 'StuGradeInfo' %}">成绩查看</a></li>
+            <li><a href="{% url 'index' %}">退出</a></li>
         </ul>
     </div>
     <section>
@@ -44,7 +44,7 @@
             <div class="container">
                 <div class="tab-content">
                     <div id="home" class="container tab-pane active"><br>
-                        <h3>成绩信息</h3>
+                    <!--    <h3>成绩信息</h3>
                         <table class="table">
                             <thead>
                                 <tr>
@@ -58,6 +58,28 @@
                             <tbody>
                                 {% for i in grade%}   
                                 <tr class="danger">
+                                    <td>{{ i.course.name }}</td>
+                                    <td>{{ i.exam_name }}</td>
+                                    <td>{{ i.exam_time }}</td>
+                                    <td>{{ i.grade }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    -->
+                        <h3>考试信息</h3>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>考试科目</th>
+                                    <th>试卷名称</th>
+                                    <th>考试时间</th>
+                                    <th>成绩</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for i in grade%}   
+                                <tr class="examinfo">
                                     <td>{{ i.course.name }}</td>
                                     <td>{{ i.exam_name }}</td>
                                     <td>{{ i.exam_time }}</td>
