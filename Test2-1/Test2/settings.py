@@ -130,4 +130,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
-
+LOGIN_URL = '/index/'
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+SESSION_ENGINE='django.contrib.sessions.backends.db'

@@ -24,11 +24,12 @@ urlpatterns = [
     # 管理员登陆
     path('admin/', admin.site.urls),
     # path('captcha/', include('captcha.urls')),
-    path('', index, name="index"),  # 首页
+    path('index/', index, name="index"),  # 首页
     path('register', RegisterView.as_view(), name="register"),  # 学生注册
     path('login/', LoginView.as_view(), name='login'),  # 学生登录
     # path('logout/', LogoutView.as_view(), name="logout"),
     path('teacherlogin/', TeacherLoginView.as_view(), name='teacherlogin'),  # 老师登录
+    path('logout/', LogoutView.as_view(), name='logout'),  # 学生退出
     path('login/personal/', StuInfoPersonal, name="StuInfoPersonal"),  # 学生的个人信息 
     path('login/StuExamInfo/', StuExamInfo, name="StuExamInfo"),  # 学生的考试信息
     path('login/StuGradeInfo/', StuGradeInfo, name="StuGradeInfo"),  # 学生的成绩信息

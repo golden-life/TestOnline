@@ -56,7 +56,7 @@ Django：3.0.4
 
 分工情况
 * Wangwenqi（组长）：登陆注册前后端、学生模块前端、数据爬取
-* Zhaoweijie：管理员模块前后端
+* Zhaoweijie：管理员模块前端、管理员模块后端
 * Zhouxinyi：学生模块后端、教师模块前后端
 
 安全性：

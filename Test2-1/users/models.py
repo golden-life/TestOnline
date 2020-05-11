@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 from django.db import models
 from datetime import datetime
 from django.contrib.auth.models import AbstractUser
+
 # Create your models here.
 
 DEPT = (
@@ -32,7 +33,6 @@ class Student(AbstractUser):  # 继承，学生表在继承的基础上包含以
     #sdept = models.CharField('学院', max_length=20, choices=DEPT, default=None)  
     sdept = models.ForeignKey(Sdept, verbose_name=u"学院", on_delete=models.CASCADE, null=True)  # 学院
     email = models.EmailField('邮箱', default=None)  # 邮箱
-
     class Meta:  # 表名
         db_table = 'student'
         verbose_name = '学生'

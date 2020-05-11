@@ -1,4 +1,11 @@
 # Create your views here.
+from django.contrib.auth.decorators import login_required
+from django.contrib.sessions.models import Session
+from django.utils import timezone
+from django.db.models import Q
+from django.db import models
+from django.contrib.auth.models import User
+from django.contrib import auth
 from django.views.generic.base import View
 from .form import RegisterForm, LoginForm
 from django.shortcuts import render, redirect
@@ -6,8 +13,8 @@ from django.contrib.auth.hashers import make_password, check_password
 from .models import Student, Teacher,Course,Question,Paper,Grade,Sdept
 from django.contrib.auth import authenticate, login, logout
 import re
-title = "在线考试系统"
 
+title = "在线考试系统"
 
 def md5(pwd):
     # md5 加密
@@ -80,8 +87,6 @@ class RegisterView(View):
 
 
 # 学生登录
-
-
 class LoginView(View):
     # @staticmethod
     def get(self, request):
@@ -90,15 +95,15 @@ class LoginView(View):
 
     # @staticmethod
     def post(self, request):
-        print(1)
+        #print(1)
         login_form = LoginForm(request.POST)
 
         #if login_form.is_valid():  # 验证表是否为空
-        print(3)
+        #print(3)
         stu_id = request.POST.get("sid", "")
         if len(stu_id)==0:
             return render(request, "login.html", {"msg":"输入不能为空！", "login_form": login_form})
-        print(4)
+        #print(4)
         stu_passw = request.POST.get("password", "")  # 获取从前端输入的密码
         if len(stu_passw)==0:
             return render(request, "login.html", {"msg":"输入不能为空！", "login_form": login_form})
@@ -113,7 +118,7 @@ class LoginView(View):
             # if check_password(stu_passw, stu.password):
             if stu_password == stu.password:
                 # login(request, user)
-                print(5)
+                #print(5)
                 request.session['sid'] = stu.sid
                 request.session['password'] = stu.password
                 request.session['name'] = stu.name
@@ -121,8 +126,38 @@ class LoginView(View):
                 sdept = Sdept.objects.get(id = stu.sdept_id)
                 request.session['sdept'] = sdept.name
                 request.session['email'] = stu.email
-                #papers = Paper.objects.filter()
-                return render(request, "studentinfo.html", {"stu": stu})
+
+                session_key = request.session.session_key
+                if not session_key:
+                    request.session.create()
+                    session_key=request.session.session_key
+                    return render(request, "studentinfo.html", {"stu": stu})
+                
+                else:
+                    return render(request, "login.html", {"msg": "请勿重复登录！", "login_form": login_form})
+                """ request.session.create()
+                session_key=request.session.session_key
+                print("1")
+                print(session_key)
+                session=Session.objects.filter(session_key=session_key)
+                session_data=session[0].session_data
+                print("2")
+                print(session_data)
+
+                if Session.objects.filter(~Q(session_data=session_key)):
+
+                    for se in Session.objects.filter(~Q(session_key=session_key)):
+                        se_data=se.session_data
+                        print("3")
+                        print(se_data)
+                        if(session_data==se_data):
+                            se.delete()
+                            print("5")
+                            return render(request, "login.html", {"msg": "请勿重复登录！", "login_form": login_form})
+                        else:
+                            return render(request, "studentinfo.html", {"stu": stu})
+                else:
+                    return render(request, "studentinfo.html", {"stu": stu}) """
             else:
                 # u"用户名或密码错误"
                 return render(request, "login.html", {"msg": "密码错误！", "login_form": login_form})
@@ -132,10 +167,17 @@ class LoginView(View):
             #return render(request, "login.html", {"msg":"输入不能为空！", "login_form": login_form})
 
 
+
+
 class LogoutView(View):
     # @staticmethod
     def get(self, request):
-        logout(request)
+        #logout(request)
+        session_key = request.session.session_key
+        print(session_key)
+        session=Session.objects.filter(session_key=session_key)
+        session.delete()
+        print("5")
         return render(request, "index.html")
 
 
@@ -177,7 +219,19 @@ class TeacherLoginView(View):
                 sdept = Sdept.objects.get(id = tea.sdept_id)
                 request.session['sdept'] = sdept.name
                 request.session['email'] = tea.email
-                return render(request, "teacherinfo.html", {"tea": tea})
+
+                session_key = request.session.session_key
+                print("initial-tea-session-key")
+                print(session_key)
+                if not session_key:
+                    request.session.create()
+                    session_key=request.session.session_key
+                    print("tea-session-key")
+                    print(session_key)
+                    return render(request, "teacherinfo.html", {"tea": tea})
+                else:
+                    return render(request, "teacherlogin.html", {"msg": "请勿重复登录！", "login_form": login_form})
+
             else:
                 # u"密码错误"
                 return render(request, "teacherlogin.html", {"msg": "密码错误！", "login_form": login_form})
@@ -187,6 +241,7 @@ class TeacherLoginView(View):
         #    return render(request, "teacherlogin.html", {"msg": "输入不能为空！", "login_form": login_form})
     
 #教师查看成绩
+
 def TeaShowGrade(request):
     print("----")
     print('姓名',request.session['sdept'])
@@ -200,26 +255,39 @@ def TeaShowGrade(request):
 
         
 def StuInfoPersonal(request):
-    return render(request, 'stuinfo-personal.html')
+    if not request.session.session_key:
+        return render(request, "index.html")
+    else:
+        return render(request, 'stuinfo-personal.html')
 
 
 def TeaInfoPersonal(request):
-    return render(request, 'teainfo-personal.html')
+    if not request.session.session_key:
+        return render(request, "index.html")
+    else:
+        return render(request, 'teainfo-personal.html')
 
 
 def StuExamInfo(request):
-    paper =Paper.objects.filter()
-    return render(request, "stuexaminfo.html", {"paper": paper})
+    if not request.session.session_key:
+        return render(request, "index.html")
+    else:
+        paper =Paper.objects.filter()
+        return render(request, "stuexaminfo.html", {"paper": paper})
 
 
 def StuGradeInfo(request):
     print('姓----名')
     #stu=request.session()
     print('姓名',request.session['name'])
-    grade =Grade.objects.filter(stu_id = request.session['sid'])
-    return render(request, "stugradeinfo.html",{"grade": grade})
+    if not request.session.session_key:
+        return render(request, "index.html")
+    else:
+        grade =Grade.objects.filter(stu_id = request.session['sid'])
+        return render(request, "stugradeinfo.html",{"grade": grade})
     
 #考试
+
 class PaperView(View):
     #试卷
     def StartExam(request):
