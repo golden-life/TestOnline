@@ -261,6 +261,13 @@ def StuInfoPersonal(request):
         return render(request, 'stuinfo-personal.html')
 
 
+def EditStuInfo(request):
+    if not request.session.session_key:
+        return render(request, "index.html")
+    else:
+        return render(request, 'editstuinfo.html')
+
+
 def TeaInfoPersonal(request):
     if not request.session.session_key:
         return render(request, "index.html")
