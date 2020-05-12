@@ -258,14 +258,99 @@ def StuInfoPersonal(request):
     if not request.session.session_key:
         return render(request, "index.html")
     else:
+        print("0")
+        print(request.session['sid'])
+        stu_id = request.session['sid']
+        print("1")
+        print(stu_id)
+        stu_list = Student.objects.filter(sid=stu_id)
+        stu = stu_list[0]
+        print("2")
+        print(stu)
+        if stu:
+            print("3")
+            sdept = Sdept.objects.get(id = stu.sdept_id)
+            sdept_name = sdept.name
+            return render(request, "stuinfo-personal.html",{"stu": stu, "sdept_name":sdept_name,"title": title})
         return render(request, 'stuinfo-personal.html')
 
 
-def EditStuInfo(request):
-    if not request.session.session_key:
-        return render(request, "index.html")
-    else:
-        return render(request, 'editstuinfo.html')
+class EditStuInfo(View):
+    def ShowEditInfo(request):
+        return render(request, "editstuinfo.html")
+    def Edit(request):
+        if request.method=='POST':
+            #stu_id = request.GET.get('sid') 
+            stu_id = request.session['sid']
+            stu_name = request.POST.get("name", "")
+            print("stu_name",stu_name)
+            stu_sclass = request.POST.get("sclass", "")  
+            #print("stu_sclass",stu_sclass)     
+            stu_sdept = request.POST.get("sdept", "")
+            sdept = Sdept.objects.get(name = stu_sdept)
+            #print("stu_sdept",stu_sdept) 
+            sdept_name=sdept.name
+            sdept_id=sdept.id
+            #print("sdept_name  sdept_id",sdept_name,sdept_id)
+            stu_email = request.POST.get("email")
+            #print("stu_email",stu_email) 
+            stu_list = Student.objects.filter(sid=stu_id)
+            stu = stu_list[0]
+            temp = stu_list[0]
+            if stu:
+                stu.id=stu_id
+                if stu_name:
+                    stu.name = stu_name
+                else:
+                    stu.name =temp.name
+                print("123stu.name",stu.name)
+                if stu_sclass:
+                    stu.sclass = stu_sclass
+                else:
+                    stu.name =temp.name
+                if sdept_id:
+                    stu.sdept_id=sdept_id
+                else:
+                    stu.sdept_id=temp.sdept_id
+                if stu_email:
+                    stu.email = stu_email
+                else:
+                    stu.email = temp.email
+                stu.save()
+                #print("123:stu_email",stu_email)
+                return render(request, "stuinfo-personal.html",{"stu": stu, "sdept_name":sdept_name,"stu.name":stu.name,"title": title})
+            else:
+                return render(request, "register.html", {'script': "alert", 'msg0': u"未找到"})
+    """ def get(self, request):
+        # 把form传给前端,里边是验证码需要在前端显示
+        register_form = RegisterForm()   # 获得注册表单，空表单等待输入
+        return render(request, 'register.html', {'register_form': register_form, "title": title})  # 转到注册界面
+
+    # @staticmethod
+    def post(self, request):  # 把前端注册表单的内容传到后端
+    # @staticmethod
+    if request.method == 'POST' and request.POST:
+    # @staticmethod
+        stu_id = request.Get.get('sid') 
+        # 获取前端填的表单,写进user库里    
+        stu_name = request.POST.get("name", "")
+        stu_sclass = request.POST.get("sclass", "")       
+        stu_sdept = request.POST.get("sdept", "")
+        sdept = Sdept.objects.get(name = stu_sdept)
+        stu_email = request.POST.get("email")
+        stu_profile = Student.objects.filter(sid=stu_id).first()
+        if stu_profile:
+            stu_profile.name = stu_name
+            stu_profile.sclass = stu_sclass
+            stu_profile.sdept_id = sdept.id
+            stu_profile.email = stu_email
+            stu_profile.is_active = True  # 用户激活状态，目前不太清楚用处
+            stu_profile.save()
+            return render(request, "stuinfo-personal.html",{"stu_profile": stu_profile, "title": title})
+        else:
+            return render(request, "register.html", {'script': "alert", 'msg0': u"未找到"})
+
+ """
 
 
 def TeaInfoPersonal(request):
@@ -338,3 +423,5 @@ class PaperView(View):
             Grade.objects.create(stu_id=sid,exam_name=papername,grade=exam_grade,course_id=course.id)
             print(exam_grade)
             return render(request,"score.html",{"grade":exam_grade, "wrong_question":wrong_question_now, "wrong_num":wrong_question_count})
+
+

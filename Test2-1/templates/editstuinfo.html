@@ -3,9 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <link href="/static/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet">
+    <!-- 必须在引入bootstarp.js之前引入 -->
+    <script src="/static/jquery-3.3.1.min.js"></script>
+    <script src="/static/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+
+    <link rel="stylesheet" href="/static/css/studentinfo.css">
+    <link rel="stylesheet" href="/static/font-awesome-4.7.0/css/font-awesome.css">
+
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <title>个人信息修改</title>
 </head>
 <body>
-    个人信息修改！
+    <div class="sidebar">
+        <header>TestOnline</header>
+        <div class="info-photo">
+                <div class="profile-dtl">
+                    <img src="/static/img/10.jpg">
+                    <h2>{{ request.session.name }}</h2>
+                </div>
+            </div>
+        <ul>
+            <li><a href="{%url 'StuInfoPersonal' %}">个人信息</a></li>
+            <li><a href="{%url 'StuExamInfo' %}">考试信息</a></li>
+            <li><a href="{%url 'StuGradeInfo' %}">成绩查看</a></li>
+            <li><a href="{% url 'logout' %}">退出</a></li>
+        </ul>
+    </div>
+    <section>
+        <div class="container">
+            <div class="tab-content">
+                <div id="home" class="container tab-pane active"><br>
+                <h3>个人信息</h3>
+                <form class="box" action="{% url 'Edit' %}" method="POST" autocomplete="off">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>属性</th>
+                                <th>信息</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="examinfo">
+                                <td>学号</td>
+                                <td>{{ request.session.sid }}</td>
+                            </tr>
+                            <tr class="examinfo">
+                                <td>姓名</td>
+                                <td><input type="text" name="name" class="form-control" id="username" placeholder="{{ request.session.name }}" style="text-align: center;font-size: 20px;color: black;"></td>
+                            </tr>
+                            <tr class="examinfo">
+                                <td>学院</td>
+                                <td><select name="sdept" class="form-control" id="id_sdept" placeholder="{{ request.session.sdept }}" onchange="document.getElementById('input').value=this.value" style="font-size: 20px;color: black;">
+                                    <option value="计算机科学与技术学院">计算机科学与技术学院</option>
+                                    <option value="电气与自动化学院">电气与自动化学院</option>
+                                    <option value="外国语学院">外国语学院</option>
+                                    <option value="理学院">理学院</option>
+                                </select></td>
+                            </tr>
+                            <tr class="examinfo">
+                                <td>班号</td>
+                                <td><input type="text" id="id_sclass" name="sclass" class="form-control" placeholder="{{ request.session.sclass }}" style="text-align: center;font-size: 20px;color: black;"></td>
+                            </tr>
+                            <tr class="examinfo">
+                                <td>邮箱地址</td>
+                                <td><input type="text" id="id_email" name="email" class="form-control" placeholder="{{ request.session.email }}" style="text-align: center;font-size: 20px;color: black;"></td>
+                            </tr>    
+                        </tbody>    
+                    </table>
+                    <input type="submit" name="" value="提交更新" style="width: 120px;margin-left: 750px; margin-top: 50px;font-size: 25px;">
+                </form>
+                    
+                
+                </div>
+            </div>
+        </div>
+        </section>
 </body>
 </html>

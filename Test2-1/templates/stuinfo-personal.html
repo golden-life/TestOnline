@@ -29,7 +29,7 @@
         <div class="info-photo">
                 <div class="profile-dtl">
                     <img src="/static/img/10.jpg">
-                    <h2>{{ request.session.name }}</h2>
+                    <h2>{{ stu.name }}</h2>
                 </div>
             </div>
         <ul>
@@ -86,28 +86,28 @@
                     <tbody>
                         <tr class="examinfo">
                             <td>学号</td>
-                            <td>{{ request.session.sid }}</td>
+                            <td>{{ stu.sid }}</td>
                         </tr>
                         <tr class="examinfo">
                             <td>姓名</td>
-                            <td>{{ request.session.name }}</td>
+                            <td>{{ stu.name }}</td>
                         </tr>
                         <tr class="examinfo">
                             <td>学院</td>
-                            <td>{{ request.session.sdept }}</td>
+                            <td>{{ sdept_name }}</td>
                         </tr>
                         <tr class="examinfo">
                             <td>班号</td>
-                            <td>{{ request.session.sclass }}</td>
+                            <td>{{ stu.sclass }}</td>
                         </tr>
                         <tr class="examinfo">
                             <td>邮箱地址</td>
-                            <td>{{ request.session.email }}</td>
+                            <td>{{ stu.email }}</td>
                         </tr>
                     </tbody>
                 </table>
-                <a href="{% url 'EditStuInfo' %}">
-                    <button class="btn btn-primary" style="margin-left: 750px; margin-top: 50px;font-size: 25px;">信息修改</button>
+                <a href="{% url 'ShowEditInfo' %}">
+                    <button class="btn btn-primary" style="margin-left: 750px; margin-top: 50px;font-size: 25px;">编辑信息</button>
                 </a>
             </div>
         </div>
