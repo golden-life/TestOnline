@@ -4,13 +4,13 @@ Navicat MySQL Data Transfer
 Source Server         : zxy
 Source Server Version : 80019
 Source Host           : localhost:3306
-Source Database       : exam
+Source Database       : 1
 
 Target Server Type    : MYSQL
 Target Server Version : 80019
 File Encoding         : 65001
 
-Date: 2020-04-16 19:40:43
+Date: 2020-05-21 16:47:12
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -21,10 +21,10 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `auth_group`;
 CREATE TABLE `auth_group` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(150) NOT NULL,
+  `name` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- ----------------------------
 -- Records of auth_group
@@ -43,7 +43,7 @@ CREATE TABLE `auth_group_permissions` (
   KEY `auth_group_permissio_permission_id_84c5c92e_fk_auth_perm` (`permission_id`),
   CONSTRAINT `auth_group_permissio_permission_id_84c5c92e_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`),
   CONSTRAINT `auth_group_permissions_group_id_b120cbf9_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- ----------------------------
 -- Records of auth_group_permissions
@@ -55,13 +55,13 @@ CREATE TABLE `auth_group_permissions` (
 DROP TABLE IF EXISTS `auth_permission`;
 CREATE TABLE `auth_permission` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `content_type_id` int NOT NULL,
-  `codename` varchar(100) NOT NULL,
+  `codename` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `auth_permission_content_type_id_codename_01ab375a_uniq` (`content_type_id`,`codename`),
   CONSTRAINT `auth_permission_content_type_id_2f476e4b_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- ----------------------------
 -- Records of auth_permission
@@ -78,30 +78,30 @@ INSERT INTO `auth_permission` VALUES ('9', 'Can add group', '3', 'add_group');
 INSERT INTO `auth_permission` VALUES ('10', 'Can change group', '3', 'change_group');
 INSERT INTO `auth_permission` VALUES ('11', 'Can delete group', '3', 'delete_group');
 INSERT INTO `auth_permission` VALUES ('12', 'Can view group', '3', 'view_group');
-INSERT INTO `auth_permission` VALUES ('13', 'Can add content type', '4', 'add_contenttype');
-INSERT INTO `auth_permission` VALUES ('14', 'Can change content type', '4', 'change_contenttype');
-INSERT INTO `auth_permission` VALUES ('15', 'Can delete content type', '4', 'delete_contenttype');
-INSERT INTO `auth_permission` VALUES ('16', 'Can view content type', '4', 'view_contenttype');
-INSERT INTO `auth_permission` VALUES ('17', 'Can add session', '5', 'add_session');
-INSERT INTO `auth_permission` VALUES ('18', 'Can change session', '5', 'change_session');
-INSERT INTO `auth_permission` VALUES ('19', 'Can delete session', '5', 'delete_session');
-INSERT INTO `auth_permission` VALUES ('20', 'Can view session', '5', 'view_session');
-INSERT INTO `auth_permission` VALUES ('21', 'Can add 学生', '6', 'add_student');
-INSERT INTO `auth_permission` VALUES ('22', 'Can change 学生', '6', 'change_student');
-INSERT INTO `auth_permission` VALUES ('23', 'Can delete 学生', '6', 'delete_student');
-INSERT INTO `auth_permission` VALUES ('24', 'Can view 学生', '6', 'view_student');
-INSERT INTO `auth_permission` VALUES ('25', 'Can add 科目', '7', 'add_course');
-INSERT INTO `auth_permission` VALUES ('26', 'Can change 科目', '7', 'change_course');
-INSERT INTO `auth_permission` VALUES ('27', 'Can delete 科目', '7', 'delete_course');
-INSERT INTO `auth_permission` VALUES ('28', 'Can view 科目', '7', 'view_course');
-INSERT INTO `auth_permission` VALUES ('29', 'Can add 学院', '8', 'add_sdept');
-INSERT INTO `auth_permission` VALUES ('30', 'Can change 学院', '8', 'change_sdept');
-INSERT INTO `auth_permission` VALUES ('31', 'Can delete 学院', '8', 'delete_sdept');
-INSERT INTO `auth_permission` VALUES ('32', 'Can view 学院', '8', 'view_sdept');
-INSERT INTO `auth_permission` VALUES ('33', 'Can add 教师', '9', 'add_teacher');
-INSERT INTO `auth_permission` VALUES ('34', 'Can change 教师', '9', 'change_teacher');
-INSERT INTO `auth_permission` VALUES ('35', 'Can delete 教师', '9', 'delete_teacher');
-INSERT INTO `auth_permission` VALUES ('36', 'Can view 教师', '9', 'view_teacher');
+INSERT INTO `auth_permission` VALUES ('13', 'Can add user', '4', 'add_user');
+INSERT INTO `auth_permission` VALUES ('14', 'Can change user', '4', 'change_user');
+INSERT INTO `auth_permission` VALUES ('15', 'Can delete user', '4', 'delete_user');
+INSERT INTO `auth_permission` VALUES ('16', 'Can view user', '4', 'view_user');
+INSERT INTO `auth_permission` VALUES ('17', 'Can add content type', '5', 'add_contenttype');
+INSERT INTO `auth_permission` VALUES ('18', 'Can change content type', '5', 'change_contenttype');
+INSERT INTO `auth_permission` VALUES ('19', 'Can delete content type', '5', 'delete_contenttype');
+INSERT INTO `auth_permission` VALUES ('20', 'Can view content type', '5', 'view_contenttype');
+INSERT INTO `auth_permission` VALUES ('21', 'Can add session', '6', 'add_session');
+INSERT INTO `auth_permission` VALUES ('22', 'Can change session', '6', 'change_session');
+INSERT INTO `auth_permission` VALUES ('23', 'Can delete session', '6', 'delete_session');
+INSERT INTO `auth_permission` VALUES ('24', 'Can view session', '6', 'view_session');
+INSERT INTO `auth_permission` VALUES ('25', 'Can add 学生', '7', 'add_student');
+INSERT INTO `auth_permission` VALUES ('26', 'Can change 学生', '7', 'change_student');
+INSERT INTO `auth_permission` VALUES ('27', 'Can delete 学生', '7', 'delete_student');
+INSERT INTO `auth_permission` VALUES ('28', 'Can view 学生', '7', 'view_student');
+INSERT INTO `auth_permission` VALUES ('29', 'Can add 教师', '8', 'add_teacher');
+INSERT INTO `auth_permission` VALUES ('30', 'Can change 教师', '8', 'change_teacher');
+INSERT INTO `auth_permission` VALUES ('31', 'Can delete 教师', '8', 'delete_teacher');
+INSERT INTO `auth_permission` VALUES ('32', 'Can view 教师', '8', 'view_teacher');
+INSERT INTO `auth_permission` VALUES ('33', 'Can add 科目', '9', 'add_course');
+INSERT INTO `auth_permission` VALUES ('34', 'Can change 科目', '9', 'change_course');
+INSERT INTO `auth_permission` VALUES ('35', 'Can delete 科目', '9', 'delete_course');
+INSERT INTO `auth_permission` VALUES ('36', 'Can view 科目', '9', 'view_course');
 INSERT INTO `auth_permission` VALUES ('37', 'Can add 题目', '10', 'add_question');
 INSERT INTO `auth_permission` VALUES ('38', 'Can change 题目', '10', 'change_question');
 INSERT INTO `auth_permission` VALUES ('39', 'Can delete 题目', '10', 'delete_question');
@@ -118,6 +118,79 @@ INSERT INTO `auth_permission` VALUES ('49', 'Can add captcha store', '13', 'add_
 INSERT INTO `auth_permission` VALUES ('50', 'Can change captcha store', '13', 'change_captchastore');
 INSERT INTO `auth_permission` VALUES ('51', 'Can delete captcha store', '13', 'delete_captchastore');
 INSERT INTO `auth_permission` VALUES ('52', 'Can view captcha store', '13', 'view_captchastore');
+INSERT INTO `auth_permission` VALUES ('53', 'Can add 班级', '14', 'add_sclass');
+INSERT INTO `auth_permission` VALUES ('54', 'Can change 班级', '14', 'change_sclass');
+INSERT INTO `auth_permission` VALUES ('55', 'Can delete 班级', '14', 'delete_sclass');
+INSERT INTO `auth_permission` VALUES ('56', 'Can view 班级', '14', 'view_sclass');
+INSERT INTO `auth_permission` VALUES ('57', 'Can add 学院', '15', 'add_sdept');
+INSERT INTO `auth_permission` VALUES ('58', 'Can change 学院', '15', 'change_sdept');
+INSERT INTO `auth_permission` VALUES ('59', 'Can delete 学院', '15', 'delete_sdept');
+INSERT INTO `auth_permission` VALUES ('60', 'Can view 学院', '15', 'view_sdept');
+
+-- ----------------------------
+-- Table structure for auth_user
+-- ----------------------------
+DROP TABLE IF EXISTS `auth_user`;
+CREATE TABLE `auth_user` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `password` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `last_login` datetime(6) DEFAULT NULL,
+  `is_superuser` tinyint(1) NOT NULL,
+  `username` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `first_name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `last_name` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `email` varchar(254) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `is_staff` tinyint(1) NOT NULL,
+  `is_active` tinyint(1) NOT NULL,
+  `date_joined` datetime(6) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- ----------------------------
+-- Records of auth_user
+-- ----------------------------
+INSERT INTO `auth_user` VALUES ('1', 'pbkdf2_sha256$180000$S5LfTLAIka1x$C47O0U7NJ5vWPZ36vhgeADngpDG9uBhEnoOvR5rlR04=', '2020-04-02 03:11:41.407916', '1', 'admin', '', '', 'admin@123.com', '1', '1', '2020-04-02 03:11:02.738064');
+INSERT INTO `auth_user` VALUES ('2', 'pbkdf2_sha256$180000$ZhHtMAQ3gQBR$Cd+qGHCEmg+nu1iwW0Ms8nY0EcPMbRqKix7IWuEJzFs=', '2020-05-07 11:22:09.066684', '1', 'zwj', '', '', 'zwj@123.com', '1', '1', '2020-04-25 17:53:48.862454');
+INSERT INTO `auth_user` VALUES ('3', 'pbkdf2_sha256$180000$pR2PlaA7c3Nj$N4D4c1KXcrkY1wDzfb26yjvFipZtFydlocxRNE/OFd0=', '2020-05-17 17:53:15.931223', '1', 'wwq', '', '', 'wwq@123.com', '1', '1', '2020-05-07 22:42:15.406214');
+
+-- ----------------------------
+-- Table structure for auth_user_groups
+-- ----------------------------
+DROP TABLE IF EXISTS `auth_user_groups`;
+CREATE TABLE `auth_user_groups` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL,
+  `group_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `auth_user_groups_user_id_group_id_94350c0c_uniq` (`user_id`,`group_id`),
+  KEY `auth_user_groups_group_id_97559544_fk_auth_group_id` (`group_id`),
+  CONSTRAINT `auth_user_groups_group_id_97559544_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`),
+  CONSTRAINT `auth_user_groups_user_id_6a12ed8b_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- ----------------------------
+-- Records of auth_user_groups
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for auth_user_user_permissions
+-- ----------------------------
+DROP TABLE IF EXISTS `auth_user_user_permissions`;
+CREATE TABLE `auth_user_user_permissions` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL,
+  `permission_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `auth_user_user_permissions_user_id_permission_id_14a6b632_uniq` (`user_id`,`permission_id`),
+  KEY `auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm` (`permission_id`),
+  CONSTRAINT `auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`),
+  CONSTRAINT `auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- ----------------------------
+-- Records of auth_user_user_permissions
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for captcha_captchastore
@@ -125,13 +198,13 @@ INSERT INTO `auth_permission` VALUES ('52', 'Can view captcha store', '13', 'vie
 DROP TABLE IF EXISTS `captcha_captchastore`;
 CREATE TABLE `captcha_captchastore` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `challenge` varchar(32) NOT NULL,
-  `response` varchar(32) NOT NULL,
-  `hashkey` varchar(40) NOT NULL,
+  `challenge` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `response` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `hashkey` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `expiration` datetime(6) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `hashkey` (`hashkey`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- ----------------------------
 -- Records of captcha_captchastore
@@ -151,10 +224,6 @@ CREATE TABLE `course` (
 -- ----------------------------
 -- Records of course
 -- ----------------------------
-INSERT INTO `course` VALUES ('1', '其他', '测试');
-INSERT INTO `course` VALUES ('2', '软件安全', '信安');
-INSERT INTO `course` VALUES ('3', '软件工程', '信安、计科');
-INSERT INTO `course` VALUES ('4', '网络安全', '信安');
 INSERT INTO `course` VALUES ('5', '算法', '测试');
 INSERT INTO `course` VALUES ('6', '计算机组成原理', '测试');
 INSERT INTO `course` VALUES ('7', '计算机网络', '测试');
@@ -166,23 +235,42 @@ DROP TABLE IF EXISTS `django_admin_log`;
 CREATE TABLE `django_admin_log` (
   `id` int NOT NULL AUTO_INCREMENT,
   `action_time` datetime(6) NOT NULL,
-  `object_id` longtext,
-  `object_repr` varchar(200) NOT NULL,
+  `object_id` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
+  `object_repr` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `action_flag` smallint unsigned NOT NULL,
-  `change_message` longtext NOT NULL,
+  `change_message` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `content_type_id` int DEFAULT NULL,
-  `user_id` varchar(20) NOT NULL,
+  `user_id` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `django_admin_log_content_type_id_c4bce8eb_fk_django_co` (`content_type_id`),
-  KEY `django_admin_log_user_id_c564eba6_fk_student_sid` (`user_id`),
+  KEY `django_admin_log_user_id_c564eba6_fk_auth_user_id` (`user_id`),
   CONSTRAINT `django_admin_log_content_type_id_c4bce8eb_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`),
-  CONSTRAINT `django_admin_log_user_id_c564eba6_fk_student_sid` FOREIGN KEY (`user_id`) REFERENCES `student` (`sid`),
+  CONSTRAINT `django_admin_log_user_id_c564eba6_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`),
   CONSTRAINT `django_admin_log_chk_1` CHECK ((`action_flag` >= 0))
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- ----------------------------
 -- Records of django_admin_log
 -- ----------------------------
+INSERT INTO `django_admin_log` VALUES ('1', '2020-04-02 03:19:42.856113', '1', '1', '1', '[{\"added\": {}}]', '7', '1');
+INSERT INTO `django_admin_log` VALUES ('2', '2020-04-02 18:03:16.483182', '1', 'Course object (1)', '1', '[{\"added\": {}}]', '9', '1');
+INSERT INTO `django_admin_log` VALUES ('3', '2020-04-25 17:55:25.506766', '123', '123', '1', '[{\"added\": {}}]', '7', '2');
+INSERT INTO `django_admin_log` VALUES ('4', '2020-04-26 17:41:12.094792', '1', 'Question object (1)', '1', '[{\"added\": {}}]', '10', '2');
+INSERT INTO `django_admin_log` VALUES ('5', '2020-04-26 17:41:25.846461', '1', 'Paper object (1)', '1', '[{\"added\": {}}]', '11', '2');
+INSERT INTO `django_admin_log` VALUES ('6', '2020-04-26 17:56:05.464850', '1', 'Grade object (1)', '1', '[{\"added\": {}}]', '12', '2');
+INSERT INTO `django_admin_log` VALUES ('7', '2020-04-26 19:56:10.642666', '1', 'Question object (1)', '2', '[{\"changed\": {\"fields\": [\"\\u9898\\u76ee\\u5185\\u5bb9\"]}}]', '10', '2');
+INSERT INTO `django_admin_log` VALUES ('8', '2020-05-04 18:23:12.224698', '1', '1', '1', '[{\"added\": {}}]', '8', '2');
+INSERT INTO `django_admin_log` VALUES ('9', '2020-05-04 18:40:36.992089', '111111', '111111', '1', '[{\"added\": {}}]', '7', '2');
+INSERT INTO `django_admin_log` VALUES ('10', '2020-05-04 18:40:45.547760', '111111', '111111', '2', '[{\"changed\": {\"fields\": [\"\\u59d3\\u540d\"]}}]', '7', '2');
+INSERT INTO `django_admin_log` VALUES ('11', '2020-05-04 18:41:32.994403', '1111', '1111', '1', '[{\"added\": {}}]', '8', '2');
+INSERT INTO `django_admin_log` VALUES ('12', '2020-05-04 18:45:53.613333', '123', '123', '3', '', '7', '2');
+INSERT INTO `django_admin_log` VALUES ('13', '2020-05-04 18:47:59.128212', '111111111111', '111111111111', '1', '[{\"added\": {}}]', '8', '2');
+INSERT INTO `django_admin_log` VALUES ('14', '2020-05-04 18:48:51.307078', '2', 'Course object (2)', '1', '[{\"added\": {}}]', '9', '2');
+INSERT INTO `django_admin_log` VALUES ('15', '2020-05-04 18:49:29.426645', '3', 'Course object (3)', '1', '[{\"added\": {}}]', '9', '2');
+INSERT INTO `django_admin_log` VALUES ('16', '2020-05-04 18:53:42.249404', '2', 'Grade object (2)', '1', '[{\"added\": {}}]', '12', '2');
+INSERT INTO `django_admin_log` VALUES ('17', '2020-05-04 18:54:52.804387', '1', '1', '3', '', '7', '2');
+INSERT INTO `django_admin_log` VALUES ('18', '2020-05-04 19:03:04.220361', '3', 'Grade object (3)', '1', '[{\"added\": {}}]', '12', '2');
+INSERT INTO `django_admin_log` VALUES ('19', '2020-05-04 19:03:16.118491', '4', 'Course object (4)', '1', '[{\"added\": {}}]', '9', '2');
 
 -- ----------------------------
 -- Table structure for django_content_type
@@ -190,11 +278,11 @@ CREATE TABLE `django_admin_log` (
 DROP TABLE IF EXISTS `django_content_type`;
 CREATE TABLE `django_content_type` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `app_label` varchar(100) NOT NULL,
-  `model` varchar(100) NOT NULL,
+  `app_label` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `model` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `django_content_type_app_label_model_76bd3d3b_uniq` (`app_label`,`model`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- ----------------------------
 -- Records of django_content_type
@@ -202,16 +290,18 @@ CREATE TABLE `django_content_type` (
 INSERT INTO `django_content_type` VALUES ('1', 'admin', 'logentry');
 INSERT INTO `django_content_type` VALUES ('3', 'auth', 'group');
 INSERT INTO `django_content_type` VALUES ('2', 'auth', 'permission');
+INSERT INTO `django_content_type` VALUES ('4', 'auth', 'user');
 INSERT INTO `django_content_type` VALUES ('13', 'captcha', 'captchastore');
-INSERT INTO `django_content_type` VALUES ('4', 'contenttypes', 'contenttype');
-INSERT INTO `django_content_type` VALUES ('5', 'sessions', 'session');
-INSERT INTO `django_content_type` VALUES ('7', 'users', 'course');
+INSERT INTO `django_content_type` VALUES ('5', 'contenttypes', 'contenttype');
+INSERT INTO `django_content_type` VALUES ('6', 'sessions', 'session');
+INSERT INTO `django_content_type` VALUES ('9', 'users', 'course');
 INSERT INTO `django_content_type` VALUES ('12', 'users', 'grade');
 INSERT INTO `django_content_type` VALUES ('11', 'users', 'paper');
 INSERT INTO `django_content_type` VALUES ('10', 'users', 'question');
-INSERT INTO `django_content_type` VALUES ('8', 'users', 'sdept');
-INSERT INTO `django_content_type` VALUES ('6', 'users', 'student');
-INSERT INTO `django_content_type` VALUES ('9', 'users', 'teacher');
+INSERT INTO `django_content_type` VALUES ('14', 'users', 'sclass');
+INSERT INTO `django_content_type` VALUES ('15', 'users', 'sdept');
+INSERT INTO `django_content_type` VALUES ('7', 'users', 'student');
+INSERT INTO `django_content_type` VALUES ('8', 'users', 'teacher');
 
 -- ----------------------------
 -- Table structure for django_migrations
@@ -219,51 +309,69 @@ INSERT INTO `django_content_type` VALUES ('9', 'users', 'teacher');
 DROP TABLE IF EXISTS `django_migrations`;
 CREATE TABLE `django_migrations` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `app` varchar(255) NOT NULL,
-  `name` varchar(255) NOT NULL,
+  `app` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `applied` datetime(6) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- ----------------------------
 -- Records of django_migrations
 -- ----------------------------
-INSERT INTO `django_migrations` VALUES ('1', 'contenttypes', '0001_initial', '2020-04-08 18:49:35.719266');
-INSERT INTO `django_migrations` VALUES ('2', 'contenttypes', '0002_remove_content_type_name', '2020-04-08 18:49:35.816007');
-INSERT INTO `django_migrations` VALUES ('3', 'auth', '0001_initial', '2020-04-08 18:49:35.913745');
-INSERT INTO `django_migrations` VALUES ('4', 'auth', '0002_alter_permission_name_max_length', '2020-04-08 18:49:36.230895');
-INSERT INTO `django_migrations` VALUES ('5', 'auth', '0003_alter_user_email_max_length', '2020-04-08 18:49:36.238901');
-INSERT INTO `django_migrations` VALUES ('6', 'auth', '0004_alter_user_username_opts', '2020-04-08 18:49:36.247884');
-INSERT INTO `django_migrations` VALUES ('7', 'auth', '0005_alter_user_last_login_null', '2020-04-08 18:49:36.257824');
-INSERT INTO `django_migrations` VALUES ('8', 'auth', '0006_require_contenttypes_0002', '2020-04-08 18:49:36.272811');
-INSERT INTO `django_migrations` VALUES ('9', 'auth', '0007_alter_validators_add_error_messages', '2020-04-08 18:49:36.285752');
-INSERT INTO `django_migrations` VALUES ('10', 'auth', '0008_alter_user_username_max_length', '2020-04-08 18:49:36.295722');
-INSERT INTO `django_migrations` VALUES ('11', 'auth', '0009_alter_user_last_name_max_length', '2020-04-08 18:49:36.305697');
-INSERT INTO `django_migrations` VALUES ('12', 'auth', '0010_alter_group_name_max_length', '2020-04-08 18:49:36.335616');
-INSERT INTO `django_migrations` VALUES ('13', 'auth', '0011_update_proxy_permissions', '2020-04-08 18:49:36.350609');
-INSERT INTO `django_migrations` VALUES ('14', 'users', '0001_initial', '2020-04-08 18:49:36.731557');
-INSERT INTO `django_migrations` VALUES ('15', 'admin', '0001_initial', '2020-04-08 18:49:37.415725');
-INSERT INTO `django_migrations` VALUES ('16', 'admin', '0002_logentry_remove_auto_add', '2020-04-08 18:49:37.553357');
-INSERT INTO `django_migrations` VALUES ('17', 'admin', '0003_logentry_add_action_flag_choices', '2020-04-08 18:49:37.566368');
-INSERT INTO `django_migrations` VALUES ('18', 'captcha', '0001_initial', '2020-04-08 18:49:37.603224');
-INSERT INTO `django_migrations` VALUES ('19', 'sessions', '0001_initial', '2020-04-08 18:49:37.631149');
+INSERT INTO `django_migrations` VALUES ('1', 'contenttypes', '0001_initial', '2020-04-02 03:09:06.339099');
+INSERT INTO `django_migrations` VALUES ('2', 'auth', '0001_initial', '2020-04-02 03:09:09.656564');
+INSERT INTO `django_migrations` VALUES ('3', 'admin', '0001_initial', '2020-04-02 03:09:22.095156');
+INSERT INTO `django_migrations` VALUES ('4', 'admin', '0002_logentry_remove_auto_add', '2020-04-02 03:09:25.746040');
+INSERT INTO `django_migrations` VALUES ('5', 'admin', '0003_logentry_add_action_flag_choices', '2020-04-02 03:09:25.826823');
+INSERT INTO `django_migrations` VALUES ('6', 'contenttypes', '0002_remove_content_type_name', '2020-04-02 03:09:28.267347');
+INSERT INTO `django_migrations` VALUES ('7', 'auth', '0002_alter_permission_name_max_length', '2020-04-02 03:09:29.766550');
+INSERT INTO `django_migrations` VALUES ('8', 'auth', '0003_alter_user_email_max_length', '2020-04-02 03:09:30.065748');
+INSERT INTO `django_migrations` VALUES ('9', 'auth', '0004_alter_user_username_opts', '2020-04-02 03:09:30.187424');
+INSERT INTO `django_migrations` VALUES ('10', 'auth', '0005_alter_user_last_login_null', '2020-04-02 03:09:31.220220');
+INSERT INTO `django_migrations` VALUES ('11', 'auth', '0006_require_contenttypes_0002', '2020-04-02 03:09:31.311976');
+INSERT INTO `django_migrations` VALUES ('12', 'auth', '0007_alter_validators_add_error_messages', '2020-04-02 03:09:31.422681');
+INSERT INTO `django_migrations` VALUES ('13', 'auth', '0008_alter_user_username_max_length', '2020-04-02 03:09:33.078065');
+INSERT INTO `django_migrations` VALUES ('14', 'auth', '0009_alter_user_last_name_max_length', '2020-04-02 03:09:34.621737');
+INSERT INTO `django_migrations` VALUES ('15', 'auth', '0010_alter_group_name_max_length', '2020-04-02 03:09:35.007680');
+INSERT INTO `django_migrations` VALUES ('16', 'auth', '0011_update_proxy_permissions', '2020-04-02 03:09:35.184245');
+INSERT INTO `django_migrations` VALUES ('17', 'captcha', '0001_initial', '2020-04-02 03:09:36.238923');
+INSERT INTO `django_migrations` VALUES ('18', 'sessions', '0001_initial', '2020-04-02 03:09:37.228876');
+INSERT INTO `django_migrations` VALUES ('19', 'users', '0001_initial', '2020-04-02 03:09:40.214382');
+INSERT INTO `django_migrations` VALUES ('20', 'users', '0002_teacher', '2020-04-02 03:09:50.824173');
+INSERT INTO `django_migrations` VALUES ('21', 'users', '0003_auto_20200322_1435', '2020-04-02 03:09:51.252029');
+INSERT INTO `django_migrations` VALUES ('22', 'users', '0004_course_grade_paper_question', '2020-04-02 03:09:54.359629');
+INSERT INTO `django_migrations` VALUES ('23', 'users', '0005_auto_20200402_1056', '2020-04-02 03:10:18.728664');
+INSERT INTO `django_migrations` VALUES ('24', 'users', '0006_auto_20200402_1057', '2020-04-02 03:10:18.829397');
+INSERT INTO `django_migrations` VALUES ('25', 'users', '0007_auto_20200402_1100', '2020-04-02 03:10:18.964086');
+INSERT INTO `django_migrations` VALUES ('26', 'users', '0008_auto_20200402_1101', '2020-04-02 03:10:19.143183');
+INSERT INTO `django_migrations` VALUES ('27', 'users', '0009_auto_20200402_1102', '2020-04-02 03:10:19.259327');
+INSERT INTO `django_migrations` VALUES ('28', 'users', '0010_auto_20200402_1108', '2020-04-02 03:10:19.357767');
+INSERT INTO `django_migrations` VALUES ('29', 'users', '0011_auto_20200425_1743', '2020-04-25 17:44:04.230328');
+INSERT INTO `django_migrations` VALUES ('30', 'users', '0012_auto_20200425_1752', '2020-04-25 17:53:12.231791');
+INSERT INTO `django_migrations` VALUES ('31', 'users', '0013_auto_20200504_1732', '2020-05-04 17:32:46.013150');
+INSERT INTO `django_migrations` VALUES ('32', 'users', '0002_auto_20200507_1120', '2020-05-07 11:20:14.224475');
+INSERT INTO `django_migrations` VALUES ('33', 'users', '0014_auto_20200507_1125', '2020-05-07 11:25:55.749439');
+INSERT INTO `django_migrations` VALUES ('34', 'users', '0002_auto_20200515_1158', '2020-05-15 11:58:47.187134');
 
 -- ----------------------------
 -- Table structure for django_session
 -- ----------------------------
 DROP TABLE IF EXISTS `django_session`;
 CREATE TABLE `django_session` (
-  `session_key` varchar(40) NOT NULL,
-  `session_data` longtext NOT NULL,
+  `session_key` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `session_data` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `expire_date` datetime(6) NOT NULL,
   PRIMARY KEY (`session_key`),
   KEY `django_session_expire_date_a5c62663` (`expire_date`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- ----------------------------
 -- Records of django_session
 -- ----------------------------
-INSERT INTO `django_session` VALUES ('ohb2oyzmv4wdjktkgnp7dra5iaej022r', 'OGU4MmFjOTQ4YjgyZjMzZDVmNWU4NGRmZTQ4MDE1NjM0ZTM5NGYyNDp7InNpZCI6IjEwMDEiLCJwYXNzd29yZCI6IjEyMzQ1NiIsIm5hbWUiOiJcdTY3NGVcdTU2ZGIiLCJzY2xhc3MiOiIxNzA1MTAxIiwic2RlcHRfaWQiOjEsImVtYWlsIjoiMTAwMUBxcS5jb20iLCJzZGVwdCI6Ilx1OGJhMVx1N2I5N1x1NjczYVx1NzlkMVx1NWI2Nlx1NGUwZVx1NjI4MFx1NjcyZlx1NWI2Nlx1OTY2MiJ9', '2020-04-22 23:22:20.510552');
+INSERT INTO `django_session` VALUES ('2ol2uciyd5uza550992suzcfap9qgd2c', 'YTNlOThmZWNiNWM0MTlmNmIxOWM3MTc0NDM1YzJiYTlmZGRmNTExZTp7InNpZCI6IjEwMDEiLCJwYXNzd29yZCI6IjEyMzQ1NiIsIm5hbWUiOiJcdTY3NGVcdTU2ZGIiLCJzZGVwdCI6Ilx1OGJhMVx1N2I5N1x1NjczYVx1NzlkMVx1NWI2Nlx1NGUwZVx1NjI4MFx1NjcyZlx1NWI2Nlx1OTY2MiIsImVtYWlsIjoiMTAwMUBxcS5jb20ifQ==', '2020-06-02 21:19:09.959871');
+INSERT INTO `django_session` VALUES ('dkfvoqsts6w8ohjzptympalt7kdipehr', 'ZGU3MDZiOWY5YmZkNjIwNjk4NTEyODQ2ODJiMWFhZTZhMDlmMDhiOTp7InNpZCI6Ijk1MDAxIiwicGFzc3dvcmQiOiJlMTBhZGMzOTQ5YmE1OWFiYmU1NmUwNTdmMjBmODgzZSIsIm5hbWUiOiJ6eHkiLCJzY2xhc3MiOiIxNzA0MjAxIiwic2RlcHQiOiJcdThiYTFcdTdiOTdcdTY3M2FcdTc5ZDFcdTViNjZcdTRlMGVcdTYyODBcdTY3MmZcdTViNjZcdTk2NjIiLCJlbWFpbCI6IjEyMzQ1NkBxcS5jb20ifQ==', '2020-06-01 21:58:33.082779');
+INSERT INTO `django_session` VALUES ('dpwgjo8oklago8dm6rzf3cnfcff0aw47', 'NjkzMTI5YjJhZGUwMGY2Zjg0MTFmYzQzMzA2MGI5MDMxNzdiOTZhNDp7InNpZCI6Ijk1MDA1IiwicGFzc3dvcmQiOiI1YjFiNjhhOWFiZjRkMmNkMTU1YzgxYTkyMjVmZDE1OCIsIm5hbWUiOiJcdTY3NGVcdTY2MGUiLCJzY2xhc3MiOiIxNzA0MjAxIiwic2RlcHQiOiJcdThiYTFcdTdiOTdcdTY3M2FcdTc5ZDFcdTViNjZcdTRlMGVcdTYyODBcdTY3MmZcdTViNjZcdTk2NjIiLCJlbWFpbCI6IjU1NTU1QHFxLmNvbSJ9', '2020-06-01 18:03:15.919502');
+INSERT INTO `django_session` VALUES ('pztv4ulhj576al30r4cocwhhdpw8q2fi', 'YTM3MWEyN2QxOGNlOWZhNDVhZjFkZjI2MzliYjM3MWJlZGYwYzc0OTp7InNpZCI6IjE3MDExMDEiLCJwYXNzd29yZCI6ImUxMGFkYzM5NDliYTU5YWJiZTU2ZTA1N2YyMGY4ODNlIiwibmFtZSI6Ilx1OTg3ZVx1OThkZSIsInNjbGFzcyI6IjE3MDExIiwic2RlcHQiOiJcdThiYTFcdTdiOTdcdTY3M2FcdTc5ZDFcdTViNjZcdTRlMGVcdTYyODBcdTY3MmZcdTViNjZcdTk2NjIiLCJlbWFpbCI6IjEyMzQ1NkB0ZXN0LmNvbSJ9', '2020-06-04 16:32:04.832543');
 
 -- ----------------------------
 -- Table structure for grade
@@ -271,27 +379,25 @@ INSERT INTO `django_session` VALUES ('ohb2oyzmv4wdjktkgnp7dra5iaej022r', 'OGU4Mm
 DROP TABLE IF EXISTS `grade`;
 CREATE TABLE `grade` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `exam_name` varchar(100) NOT NULL,
+  `exam_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `grade` int NOT NULL,
   `exam_time` datetime(6) NOT NULL,
   `course_id` int DEFAULT NULL,
-  `stu_id` varchar(20) NOT NULL,
+  `stu_id` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `flag` int NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `grade_course_id_57ca325c_fk_course_id` (`course_id`),
-  KEY `grade_stu_id_a0080686_fk_student_sid` (`stu_id`),
-  CONSTRAINT `grade_course_id_57ca325c_fk_course_id` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`),
-  CONSTRAINT `grade_stu_id_a0080686_fk_student_sid` FOREIGN KEY (`stu_id`) REFERENCES `student` (`sid`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `grade_course_id_57ca325c_fk_course_id` (`course_id`) USING BTREE,
+  KEY `grade_stu_id_a0080686_fk_student_sid` (`stu_id`) USING BTREE,
+  CONSTRAINT `grade_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `grade_ibfk_2` FOREIGN KEY (`stu_id`) REFERENCES `student` (`sid`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE=InnoDB AUTO_INCREMENT=112 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- ----------------------------
 -- Records of grade
 -- ----------------------------
-INSERT INTO `grade` VALUES ('1', '算法1', '2', '2020-04-08 21:02:37.965819', '5', '95001');
-INSERT INTO `grade` VALUES ('2', '算法1', '10', '2020-04-08 21:03:03.507698', '5', '95001');
-INSERT INTO `grade` VALUES ('3', '算法2', '5', '2020-04-08 21:03:19.244575', '5', '95001');
-INSERT INTO `grade` VALUES ('4', '算法1', '9', '2020-04-08 21:07:58.002103', '5', '95002');
-INSERT INTO `grade` VALUES ('5', '算法1', '7', '2020-04-08 21:08:13.455390', '5', '95002');
-INSERT INTO `grade` VALUES ('6', '算法2', '0', '2020-04-08 21:08:26.289774', '5', '95002');
+INSERT INTO `grade` VALUES ('109', '算法测试一', '29', '2020-05-21 16:37:13.304568', '5', '1701101', '1');
+INSERT INTO `grade` VALUES ('110', '算法测试一', '59', '2020-05-21 16:39:15.657007', '5', '1701101', '2');
+INSERT INTO `grade` VALUES ('111', '算法测试二', '39', '2020-05-21 16:41:10.324337', '5', '1701101', '3');
 
 -- ----------------------------
 -- Table structure for paper
@@ -299,7 +405,7 @@ INSERT INTO `grade` VALUES ('6', '算法2', '0', '2020-04-08 21:08:26.289774', '
 DROP TABLE IF EXISTS `paper`;
 CREATE TABLE `paper` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) NOT NULL,
+  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `start_time` date NOT NULL,
   `single_choice_num` int NOT NULL,
   `single_choice_score` int NOT NULL,
@@ -312,15 +418,22 @@ CREATE TABLE `paper` (
   `exam_time` int NOT NULL,
   `course_id` int NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `paper_course_id_de01caa5_fk_course_id` (`course_id`),
-  CONSTRAINT `paper_course_id_de01caa5_fk_course_id` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `paper_course_id_de01caa5_fk_course_id` (`course_id`) USING BTREE,
+  CONSTRAINT `paper_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- ----------------------------
 -- Records of paper
 -- ----------------------------
-INSERT INTO `paper` VALUES ('1', '算法1', '2020-04-08', '4', '10', '0', '0', '0', '0', '4', '10', '60', '5');
-INSERT INTO `paper` VALUES ('2', '算法2', '2020-04-08', '4', '10', '0', '0', '0', '0', '4', '10', '60', '5');
+INSERT INTO `paper` VALUES ('15', '算法测试一', '2020-05-21', '18', '44', '4', '16', '0', '0', '22', '60', '60', '5');
+INSERT INTO `paper` VALUES ('16', '算法测试二', '2020-05-21', '16', '34', '4', '16', '0', '0', '20', '50', '60', '5');
+INSERT INTO `paper` VALUES ('17', '算法测试三', '2020-05-21', '12', '32', '3', '13', '0', '0', '15', '45', '50', '5');
+INSERT INTO `paper` VALUES ('18', '计组测试一', '2020-05-21', '15', '41', '7', '19', '0', '0', '22', '60', '60', '6');
+INSERT INTO `paper` VALUES ('19', '计组测试二', '2020-05-21', '14', '32', '5', '13', '0', '0', '19', '45', '60', '6');
+INSERT INTO `paper` VALUES ('20', '计组测试三', '2020-05-21', '8', '22', '3', '7', '0', '0', '11', '29', '50', '6');
+INSERT INTO `paper` VALUES ('21', '计网测试一', '2020-05-21', '22', '60', '0', '0', '0', '0', '22', '60', '60', '7');
+INSERT INTO `paper` VALUES ('22', '计网测试二', '2020-05-21', '18', '42', '2', '8', '0', '0', '20', '50', '60', '7');
+INSERT INTO `paper` VALUES ('23', '计网测试三', '2020-05-21', '11', '27', '1', '3', '0', '0', '12', '30', '50', '7');
 
 -- ----------------------------
 -- Table structure for paper_pid
@@ -331,23 +444,178 @@ CREATE TABLE `paper_pid` (
   `paper_id` int NOT NULL,
   `question_id` int NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `paper_pid_paper_id_question_id_566d3fd0_uniq` (`paper_id`,`question_id`),
-  KEY `paper_pid_question_id_066d7dbd_fk_question_id` (`question_id`),
-  CONSTRAINT `paper_pid_paper_id_56658225_fk_paper_id` FOREIGN KEY (`paper_id`) REFERENCES `paper` (`id`),
-  CONSTRAINT `paper_pid_question_id_066d7dbd_fk_question_id` FOREIGN KEY (`question_id`) REFERENCES `question` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  UNIQUE KEY `paper_pid_paper_id_question_id_566d3fd0_uniq` (`paper_id`,`question_id`) USING BTREE,
+  KEY `paper_pid_question_id_066d7dbd_fk_question_id` (`question_id`) USING BTREE,
+  CONSTRAINT `paper_pid_ibfk_1` FOREIGN KEY (`paper_id`) REFERENCES `paper` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `paper_pid_ibfk_2` FOREIGN KEY (`question_id`) REFERENCES `question` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE=InnoDB AUTO_INCREMENT=208 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- ----------------------------
 -- Records of paper_pid
 -- ----------------------------
-INSERT INTO `paper_pid` VALUES ('1', '1', '1');
-INSERT INTO `paper_pid` VALUES ('2', '1', '2');
-INSERT INTO `paper_pid` VALUES ('3', '1', '16');
-INSERT INTO `paper_pid` VALUES ('4', '1', '33');
-INSERT INTO `paper_pid` VALUES ('5', '2', '3');
-INSERT INTO `paper_pid` VALUES ('6', '2', '4');
-INSERT INTO `paper_pid` VALUES ('7', '2', '17');
-INSERT INTO `paper_pid` VALUES ('8', '2', '34');
+INSERT INTO `paper_pid` VALUES ('45', '15', '1');
+INSERT INTO `paper_pid` VALUES ('46', '15', '2');
+INSERT INTO `paper_pid` VALUES ('47', '15', '3');
+INSERT INTO `paper_pid` VALUES ('48', '15', '4');
+INSERT INTO `paper_pid` VALUES ('49', '15', '5');
+INSERT INTO `paper_pid` VALUES ('50', '15', '6');
+INSERT INTO `paper_pid` VALUES ('51', '15', '7');
+INSERT INTO `paper_pid` VALUES ('52', '15', '8');
+INSERT INTO `paper_pid` VALUES ('53', '15', '9');
+INSERT INTO `paper_pid` VALUES ('54', '15', '10');
+INSERT INTO `paper_pid` VALUES ('55', '15', '16');
+INSERT INTO `paper_pid` VALUES ('56', '15', '17');
+INSERT INTO `paper_pid` VALUES ('57', '15', '18');
+INSERT INTO `paper_pid` VALUES ('58', '15', '19');
+INSERT INTO `paper_pid` VALUES ('59', '15', '20');
+INSERT INTO `paper_pid` VALUES ('60', '15', '27');
+INSERT INTO `paper_pid` VALUES ('61', '15', '28');
+INSERT INTO `paper_pid` VALUES ('62', '15', '29');
+INSERT INTO `paper_pid` VALUES ('63', '15', '30');
+INSERT INTO `paper_pid` VALUES ('64', '15', '31');
+INSERT INTO `paper_pid` VALUES ('65', '15', '35');
+INSERT INTO `paper_pid` VALUES ('66', '15', '36');
+INSERT INTO `paper_pid` VALUES ('67', '16', '5');
+INSERT INTO `paper_pid` VALUES ('68', '16', '6');
+INSERT INTO `paper_pid` VALUES ('69', '16', '7');
+INSERT INTO `paper_pid` VALUES ('70', '16', '8');
+INSERT INTO `paper_pid` VALUES ('71', '16', '9');
+INSERT INTO `paper_pid` VALUES ('72', '16', '10');
+INSERT INTO `paper_pid` VALUES ('73', '16', '11');
+INSERT INTO `paper_pid` VALUES ('74', '16', '12');
+INSERT INTO `paper_pid` VALUES ('75', '16', '13');
+INSERT INTO `paper_pid` VALUES ('76', '16', '14');
+INSERT INTO `paper_pid` VALUES ('77', '16', '19');
+INSERT INTO `paper_pid` VALUES ('78', '16', '20');
+INSERT INTO `paper_pid` VALUES ('79', '16', '23');
+INSERT INTO `paper_pid` VALUES ('80', '16', '24');
+INSERT INTO `paper_pid` VALUES ('81', '16', '25');
+INSERT INTO `paper_pid` VALUES ('82', '16', '29');
+INSERT INTO `paper_pid` VALUES ('83', '16', '31');
+INSERT INTO `paper_pid` VALUES ('84', '16', '32');
+INSERT INTO `paper_pid` VALUES ('85', '16', '34');
+INSERT INTO `paper_pid` VALUES ('86', '16', '35');
+INSERT INTO `paper_pid` VALUES ('87', '17', '1');
+INSERT INTO `paper_pid` VALUES ('88', '17', '2');
+INSERT INTO `paper_pid` VALUES ('89', '17', '6');
+INSERT INTO `paper_pid` VALUES ('90', '17', '7');
+INSERT INTO `paper_pid` VALUES ('91', '17', '8');
+INSERT INTO `paper_pid` VALUES ('92', '17', '17');
+INSERT INTO `paper_pid` VALUES ('93', '17', '18');
+INSERT INTO `paper_pid` VALUES ('94', '17', '19');
+INSERT INTO `paper_pid` VALUES ('95', '17', '21');
+INSERT INTO `paper_pid` VALUES ('96', '17', '24');
+INSERT INTO `paper_pid` VALUES ('97', '17', '28');
+INSERT INTO `paper_pid` VALUES ('98', '17', '29');
+INSERT INTO `paper_pid` VALUES ('99', '17', '33');
+INSERT INTO `paper_pid` VALUES ('100', '17', '36');
+INSERT INTO `paper_pid` VALUES ('101', '17', '37');
+INSERT INTO `paper_pid` VALUES ('102', '18', '38');
+INSERT INTO `paper_pid` VALUES ('103', '18', '39');
+INSERT INTO `paper_pid` VALUES ('104', '18', '40');
+INSERT INTO `paper_pid` VALUES ('105', '18', '41');
+INSERT INTO `paper_pid` VALUES ('106', '18', '42');
+INSERT INTO `paper_pid` VALUES ('107', '18', '43');
+INSERT INTO `paper_pid` VALUES ('108', '18', '44');
+INSERT INTO `paper_pid` VALUES ('109', '18', '45');
+INSERT INTO `paper_pid` VALUES ('110', '18', '46');
+INSERT INTO `paper_pid` VALUES ('111', '18', '47');
+INSERT INTO `paper_pid` VALUES ('112', '18', '54');
+INSERT INTO `paper_pid` VALUES ('113', '18', '56');
+INSERT INTO `paper_pid` VALUES ('114', '18', '57');
+INSERT INTO `paper_pid` VALUES ('115', '18', '58');
+INSERT INTO `paper_pid` VALUES ('116', '18', '59');
+INSERT INTO `paper_pid` VALUES ('117', '18', '65');
+INSERT INTO `paper_pid` VALUES ('118', '18', '66');
+INSERT INTO `paper_pid` VALUES ('119', '18', '67');
+INSERT INTO `paper_pid` VALUES ('120', '18', '69');
+INSERT INTO `paper_pid` VALUES ('121', '18', '70');
+INSERT INTO `paper_pid` VALUES ('122', '18', '73');
+INSERT INTO `paper_pid` VALUES ('123', '18', '75');
+INSERT INTO `paper_pid` VALUES ('124', '19', '38');
+INSERT INTO `paper_pid` VALUES ('125', '19', '40');
+INSERT INTO `paper_pid` VALUES ('126', '19', '42');
+INSERT INTO `paper_pid` VALUES ('127', '19', '43');
+INSERT INTO `paper_pid` VALUES ('128', '19', '44');
+INSERT INTO `paper_pid` VALUES ('129', '19', '45');
+INSERT INTO `paper_pid` VALUES ('130', '19', '46');
+INSERT INTO `paper_pid` VALUES ('131', '19', '48');
+INSERT INTO `paper_pid` VALUES ('132', '19', '49');
+INSERT INTO `paper_pid` VALUES ('133', '19', '50');
+INSERT INTO `paper_pid` VALUES ('134', '19', '57');
+INSERT INTO `paper_pid` VALUES ('135', '19', '58');
+INSERT INTO `paper_pid` VALUES ('136', '19', '59');
+INSERT INTO `paper_pid` VALUES ('137', '19', '60');
+INSERT INTO `paper_pid` VALUES ('138', '19', '61');
+INSERT INTO `paper_pid` VALUES ('139', '19', '68');
+INSERT INTO `paper_pid` VALUES ('140', '19', '69');
+INSERT INTO `paper_pid` VALUES ('141', '19', '71');
+INSERT INTO `paper_pid` VALUES ('142', '19', '72');
+INSERT INTO `paper_pid` VALUES ('143', '20', '43');
+INSERT INTO `paper_pid` VALUES ('144', '20', '47');
+INSERT INTO `paper_pid` VALUES ('145', '20', '48');
+INSERT INTO `paper_pid` VALUES ('146', '20', '49');
+INSERT INTO `paper_pid` VALUES ('147', '20', '56');
+INSERT INTO `paper_pid` VALUES ('148', '20', '57');
+INSERT INTO `paper_pid` VALUES ('149', '20', '59');
+INSERT INTO `paper_pid` VALUES ('150', '20', '60');
+INSERT INTO `paper_pid` VALUES ('151', '20', '62');
+INSERT INTO `paper_pid` VALUES ('152', '20', '77');
+INSERT INTO `paper_pid` VALUES ('153', '20', '78');
+INSERT INTO `paper_pid` VALUES ('154', '21', '79');
+INSERT INTO `paper_pid` VALUES ('155', '21', '80');
+INSERT INTO `paper_pid` VALUES ('156', '21', '81');
+INSERT INTO `paper_pid` VALUES ('157', '21', '83');
+INSERT INTO `paper_pid` VALUES ('158', '21', '84');
+INSERT INTO `paper_pid` VALUES ('159', '21', '86');
+INSERT INTO `paper_pid` VALUES ('160', '21', '87');
+INSERT INTO `paper_pid` VALUES ('161', '21', '88');
+INSERT INTO `paper_pid` VALUES ('162', '21', '89');
+INSERT INTO `paper_pid` VALUES ('163', '21', '91');
+INSERT INTO `paper_pid` VALUES ('164', '21', '98');
+INSERT INTO `paper_pid` VALUES ('165', '21', '99');
+INSERT INTO `paper_pid` VALUES ('166', '21', '101');
+INSERT INTO `paper_pid` VALUES ('167', '21', '103');
+INSERT INTO `paper_pid` VALUES ('168', '21', '104');
+INSERT INTO `paper_pid` VALUES ('169', '21', '113');
+INSERT INTO `paper_pid` VALUES ('170', '21', '114');
+INSERT INTO `paper_pid` VALUES ('171', '21', '115');
+INSERT INTO `paper_pid` VALUES ('172', '21', '116');
+INSERT INTO `paper_pid` VALUES ('173', '21', '118');
+INSERT INTO `paper_pid` VALUES ('174', '21', '119');
+INSERT INTO `paper_pid` VALUES ('175', '21', '120');
+INSERT INTO `paper_pid` VALUES ('176', '22', '80');
+INSERT INTO `paper_pid` VALUES ('177', '22', '82');
+INSERT INTO `paper_pid` VALUES ('178', '22', '83');
+INSERT INTO `paper_pid` VALUES ('179', '22', '84');
+INSERT INTO `paper_pid` VALUES ('180', '22', '85');
+INSERT INTO `paper_pid` VALUES ('181', '22', '86');
+INSERT INTO `paper_pid` VALUES ('182', '22', '89');
+INSERT INTO `paper_pid` VALUES ('183', '22', '90');
+INSERT INTO `paper_pid` VALUES ('184', '22', '92');
+INSERT INTO `paper_pid` VALUES ('185', '22', '94');
+INSERT INTO `paper_pid` VALUES ('186', '22', '97');
+INSERT INTO `paper_pid` VALUES ('187', '22', '98');
+INSERT INTO `paper_pid` VALUES ('188', '22', '100');
+INSERT INTO `paper_pid` VALUES ('189', '22', '102');
+INSERT INTO `paper_pid` VALUES ('190', '22', '105');
+INSERT INTO `paper_pid` VALUES ('191', '22', '112');
+INSERT INTO `paper_pid` VALUES ('192', '22', '114');
+INSERT INTO `paper_pid` VALUES ('193', '22', '116');
+INSERT INTO `paper_pid` VALUES ('194', '22', '119');
+INSERT INTO `paper_pid` VALUES ('195', '22', '120');
+INSERT INTO `paper_pid` VALUES ('196', '23', '87');
+INSERT INTO `paper_pid` VALUES ('197', '23', '88');
+INSERT INTO `paper_pid` VALUES ('198', '23', '90');
+INSERT INTO `paper_pid` VALUES ('199', '23', '91');
+INSERT INTO `paper_pid` VALUES ('200', '23', '94');
+INSERT INTO `paper_pid` VALUES ('201', '23', '103');
+INSERT INTO `paper_pid` VALUES ('202', '23', '106');
+INSERT INTO `paper_pid` VALUES ('203', '23', '107');
+INSERT INTO `paper_pid` VALUES ('204', '23', '109');
+INSERT INTO `paper_pid` VALUES ('205', '23', '110');
+INSERT INTO `paper_pid` VALUES ('206', '23', '114');
+INSERT INTO `paper_pid` VALUES ('207', '23', '117');
 
 -- ----------------------------
 -- Table structure for question
@@ -497,13 +765,59 @@ INSERT INTO `question` VALUES ('119', 'single_choice', 'How should servlet devel
 INSERT INTO `question` VALUES ('120', 'single_choice', '假设某网站的域名为www.zhenjiang.com.cn，可推测此网站类型为（ ）', 'B', '教育', '商业', '政府', '网络机构', null, null, '4', '3', '5', '7', null, null);
 
 -- ----------------------------
+-- Table structure for question_collect
+-- ----------------------------
+DROP TABLE IF EXISTS `question_collect`;
+CREATE TABLE `question_collect` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `question_id` int NOT NULL,
+  `student_id` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `question_collect_question_id_student_id_5e91d612_uniq` (`question_id`,`student_id`),
+  KEY `question_collect_student_id_356f8eee_fk_student_sid` (`student_id`),
+  CONSTRAINT `question_collect_ibfk_1` FOREIGN KEY (`question_id`) REFERENCES `question` (`id`),
+  CONSTRAINT `question_collect_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `student` (`sid`)
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Records of question_collect
+-- ----------------------------
+INSERT INTO `question_collect` VALUES ('18', '7', '1701101');
+INSERT INTO `question_collect` VALUES ('19', '8', '1701101');
+INSERT INTO `question_collect` VALUES ('24', '11', '1701101');
+INSERT INTO `question_collect` VALUES ('20', '19', '1701101');
+INSERT INTO `question_collect` VALUES ('21', '30', '1701101');
+INSERT INTO `question_collect` VALUES ('22', '31', '1701101');
+INSERT INTO `question_collect` VALUES ('23', '36', '1701101');
+
+-- ----------------------------
+-- Table structure for sclass
+-- ----------------------------
+DROP TABLE IF EXISTS `sclass`;
+CREATE TABLE `sclass` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `cid` varchar(20) NOT NULL,
+  `sdept_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `sclass_sdept_id_dc3c8020_fk_sdept_id` (`sdept_id`),
+  CONSTRAINT `sclass_sdept_id_dc3c8020_fk_sdept_id` FOREIGN KEY (`sdept_id`) REFERENCES `sdept` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Records of sclass
+-- ----------------------------
+INSERT INTO `sclass` VALUES ('4', '17011', '1');
+INSERT INTO `sclass` VALUES ('5', '17012', '1');
+INSERT INTO `sclass` VALUES ('6', '17021', '2');
+
+-- ----------------------------
 -- Table structure for sdept
 -- ----------------------------
 DROP TABLE IF EXISTS `sdept`;
 CREATE TABLE `sdept` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) DEFAULT NULL,
-  `decs` varchar(500) DEFAULT NULL,
+  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `decs` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -521,29 +835,39 @@ INSERT INTO `sdept` VALUES ('4', '理学院', null);
 DROP TABLE IF EXISTS `student`;
 CREATE TABLE `student` (
   `last_login` datetime(6) DEFAULT NULL,
-  `is_superuser` tinyint(1) NOT NULL,
-  `username` varchar(150) NOT NULL,
-  `first_name` varchar(30) NOT NULL,
-  `last_name` varchar(150) NOT NULL,
-  `is_staff` tinyint(1) NOT NULL,
-  `is_active` tinyint(1) NOT NULL,
-  `date_joined` datetime(6) NOT NULL,
+  `is_superuser` tinyint(1) DEFAULT NULL,
+  `username` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `first_name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `last_name` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `is_staff` tinyint(1) DEFAULT NULL,
+  `is_active` tinyint(1) DEFAULT NULL,
+  `date_joined` datetime(6) DEFAULT NULL,
   `sid` varchar(20) NOT NULL,
   `password` varchar(40) NOT NULL,
   `name` varchar(20) NOT NULL,
-  `sclass` varchar(20) NOT NULL,
   `email` varchar(254) NOT NULL,
+  `sclass_id` int DEFAULT NULL,
   `sdept_id` int DEFAULT NULL,
   PRIMARY KEY (`sid`),
+  KEY `student_sclass_id_1c26f9bc_fk_sclass_id` (`sclass_id`),
   KEY `student_sdept_id_6ba476f2_fk_sdept_id` (`sdept_id`),
+  CONSTRAINT `student_sclass_id_1c26f9bc_fk_sclass_id` FOREIGN KEY (`sclass_id`) REFERENCES `sclass` (`id`),
   CONSTRAINT `student_sdept_id_6ba476f2_fk_sdept_id` FOREIGN KEY (`sdept_id`) REFERENCES `sdept` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- ----------------------------
 -- Records of student
 -- ----------------------------
-INSERT INTO `student` VALUES (null, '0', '', '', '', '0', '1', '2020-04-08 19:06:45.423215', '95001', 'e10adc3949ba59abbe56e057f20f883e', 'zxy', '1704201', '123456@qq.com', '1');
-INSERT INTO `student` VALUES (null, '0', '', '', '', '0', '1', '2020-04-08 21:07:31.836631', '95002', '96e79218965eb72c92a549dd5a330112', '李四', '1705101', '111111@qq.com', '2');
+INSERT INTO `student` VALUES (null, null, null, null, null, null, null, null, '1701101', 'e10adc3949ba59abbe56e057f20f883e', '顾飞', '123456@test.com', '4', '1');
+INSERT INTO `student` VALUES (null, null, null, null, null, null, null, null, '1701102', '0b4e7a0e5fe84ad35fb5f95b9ceeac79', '蒋丞', 'aaaaaa@test.com', '4', '1');
+INSERT INTO `student` VALUES (null, null, null, null, null, null, null, null, '1701103', 'a152e841783914146e4bcd4f39100686', '韩笑', 'asdfgh@test.com', '4', '1');
+INSERT INTO `student` VALUES (null, null, null, null, null, null, null, null, '1701104', 'c90c19f592f1700a634fdd2912983a6e', '景雪', 'mnbvcx@test.com', '4', '1');
+INSERT INTO `student` VALUES (null, null, null, null, null, null, null, null, '1701105', '59fd5494f611bd0ff46a03b952ca99e6', '江帆', 'wertyu@test.com', '4', '1');
+INSERT INTO `student` VALUES (null, null, null, null, null, null, null, null, '1701201', '343b1c4a3ea721b2d640fc8700db0f36', '怀吉', 'qqqqqq@test.com', '5', '1');
+INSERT INTO `student` VALUES (null, null, null, null, null, null, null, null, '1701202', 'd8578edf8458ce06fbc5bb76a58c5ca4', '徽柔', 'qwerty@test.com', '5', '1');
+INSERT INTO `student` VALUES (null, null, null, null, null, null, null, null, '1701203', '76419c58730d9f35de7ac538c2fd6737', '张彬', 'qazwsx@test.com', '5', '1');
+INSERT INTO `student` VALUES (null, null, null, null, null, null, null, null, '1702101', 'b427ebd39c845eb5417b7f7aaf1f9724', '季明舒', 'zxcvbn@test.com', '6', '2');
+INSERT INTO `student` VALUES (null, null, null, null, null, null, null, null, '1702102', '8ace72535e8ea08b22681721a437a6f5', '王岳', 'poiuyt@test.com', '6', '2');
 
 -- ----------------------------
 -- Table structure for student_groups
@@ -588,17 +912,20 @@ CREATE TABLE `student_user_permissions` (
 -- ----------------------------
 DROP TABLE IF EXISTS `teacher`;
 CREATE TABLE `teacher` (
-  `sid` varchar(20) NOT NULL,
-  `name` varchar(20) NOT NULL,
-  `email` varchar(254) NOT NULL,
-  `password` varchar(40) NOT NULL,
+  `sid` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `email` varchar(254) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `password` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `sdept_id` int NOT NULL,
   PRIMARY KEY (`sid`),
-  KEY `teacher_sdept_id_83614723_fk_sdept_id` (`sdept_id`),
-  CONSTRAINT `teacher_sdept_id_83614723_fk_sdept_id` FOREIGN KEY (`sdept_id`) REFERENCES `sdept` (`id`)
+  KEY `teacher_sdept_id_83614723_fk_sdept_id` (`sdept_id`) USING BTREE,
+  CONSTRAINT `teacher_ibfk_1` FOREIGN KEY (`sdept_id`) REFERENCES `sdept` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- ----------------------------
 -- Records of teacher
 -- ----------------------------
-INSERT INTO `teacher` VALUES ('1001', '李四', '1001@qq.com', '123456', '1');
+INSERT INTO `teacher` VALUES ('1001', '李华', '1001@test.com', '123456', '1');
+INSERT INTO `teacher` VALUES ('2001', '王红', '2001@test.com', '654321', '2');
+INSERT INTO `teacher` VALUES ('3001', '韩梅', '3001@test.com', '765432', '3');
+INSERT INTO `teacher` VALUES ('4001', '赵雷', '4001@test.com', 'aaaaaa', '4');
