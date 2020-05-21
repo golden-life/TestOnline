@@ -23,14 +23,15 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '2_tk*8xu1-qov#tdyv6^h391-g^4t1d)%2$b%xwr=i4l+9nnog'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = True
-DEBUG = False
-#ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+DEBUG = True
+
+#ALLOWED_HOSTS = ['127.0.0.1','localhost']
+
 
 # Application definition
 
 INSTALLED_APPS = [
+    'users.apps.SuitConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -78,7 +79,7 @@ WSGI_APPLICATION = 'Test2.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'exam',   # 使用数据库的名称
+        'NAME': '1',   # 使用数据库的名称
         'USER': 'root',  # 用户名
         'PASSWORD': '123456',  # 密码
         'HOST': '127.0.0.1',  # 地址
@@ -120,7 +121,7 @@ USE_L10N = True
 
 USE_TZ = False
 
-AUTH_USER_MODEL = 'users.Student'
+#AUTH_USER_MODEL = 'users.Student'
 # AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.AllowAllUsersModelBackend']
 
 # Static files (CSS, JavaScript, Images)
@@ -130,6 +131,17 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
+SUIT_CONFIG = {
+    'ADMIN_NAME': '统一管理平台',
+    'LIST_PER_PAGE': 20,
+    'MENU': ({'label': '用户',
+              'app': 'users',
+              'models': ('Student','Teacher','Course','Question')},
+             ),
+    # 每一个字典表示左侧菜单的一栏
+    # label表示name，app表示上边的install的app，models表示用了哪些models
+}
+
 LOGIN_URL = '/index/'
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 SESSION_ENGINE='django.contrib.sessions.backends.db'

@@ -8,7 +8,7 @@
     <!-- 必须在引入bootstarp.js之前引入 -->
     <script src="/static/jquery-3.3.1.min.js"></script>
     <script src="/static/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
-
+    <script src="D:/Git_Code/new/TestOnline/Test2-1/static/echarts.min.js"></script>
     <link rel="stylesheet" href="/static/css/teacherinfo.css">
     <link rel="stylesheet" href="/static/css/studentinfo.css">
     <link rel="stylesheet" href="/static/font-awesome-4.7.0/css/font-awesome.css">
@@ -16,6 +16,7 @@
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     
     <title>教师页面</title>
+    
 </head>
 <body>
     <!--
@@ -35,9 +36,9 @@
             </div>
         <ul>
             <li><a href="{% url 'TeaInfoPersonal' %}">个人信息</a></li>
-            <li><a href="#">成绩统计</a></li>
+            <li><a href="{% url 'TeaStatistic' %}">成绩统计</a></li>
             <li><a href="{% url 'TeaShowGrade' %}">成绩查看</a></li>
-            <li><a href="#">组卷</a></li>
+            <li><a href="{% url 'AddPaper' %}">组卷</a></li>
             <li><a href="{% url 'logout' %}">退出</a></li>
         </ul>
     </div>
@@ -46,34 +47,35 @@
         <div class="tab-content">
             <div id="home" class="container tab-pane active"><br>
                 <h3>学生成绩</h3>
-                <!--<form class="box" action="{% url 'register' %}" method="POST" autocomplete="off">-->
+                <form action="{% url 'TeaSearchGrade' %}" method="get">
                 <div class="box_1">
-                
-                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp查询方式：
-                    <select name="way" id="way" onchange="document.getElementById('input').value=this.value">
-                        <option value="全部">全部</option>
-                        <option value="第一次成绩">第一次成绩</option>
-                        <option value="最高成绩">最高成绩</option>
+                    查询方式：
+                    <select name="method" id="method" onchange="document.getElementById('input').value=this.value">
+                        <option value="all">全部</option>
+                        <option value="high">最高成绩</option>
+                        <option value="first">首次成绩</option>
                     </select>
-                       
+                    
                     &nbsp&nbsp&nbsp&nbsp班级：
-                    <select name="class" id="class" onchange="document.getElementById('input').value=this.value">
-                        <option value="1704201">1704201</option>
-                        <option value="1705101">1705101</option>
+                    <select name="sclass" id="sclass" onchange="document.getElementById('input').value=this.value">
+                        <option value="all">全部</option>
+                        {%for i in sclass%}
+                        <option value="{{i.cid}}">{{i.cid}}</option>
+                        {% endfor %}
                     </select>
                     
-                    &nbsp&nbsp&nbsp&nbsp科目：
-                    <select name="subject" id="subject" onchange="document.getElementById('input').value=this.value">
-                        <option value="算法">算法</option>
-                        <option value="计算机组成原理">计算机组成原理</option>
-                        <option value="计算机网络">计算机网络</option>
+                    &nbsp&nbsp&nbsp&nbsp试卷：
+                    <select name="paper" id="paper" onchange="document.getElementById('input').value=this.value">
+                        {%for i in paper%}
+                        <option value="{{i.name}}">{{i.name}}</option>
+                        {% endfor %}
                     </select>
                     
-                    &nbsp&nbsp&nbsp&nbsp<input type="submit" name="" value="查询">
+                    &nbsp&nbsp&nbsp&nbsp<input type="submit" name="" value="查看">
                 
-                </div>
-                    
-                <!--</form>-->
+                </div>   
+                </form>
+
                 <table class="table">
                     <thead>
                         <tr>
@@ -98,9 +100,11 @@
                         {% endfor %}
                     </tbody>
                 </table>
+                
             </div>
         </div>
     </div>
     </section>
+    
 </body>
 </html>

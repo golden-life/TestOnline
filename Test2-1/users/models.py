@@ -25,14 +25,28 @@ class Sdept(models.Model):
     def __unicode__(self):
         return self.name
 
-class Student(AbstractUser):  # 继承，学生表在继承的基础上包含以下内容
+#班级表
+class Sclass(models.Model):
+    cid = models.CharField('班号', max_length=20)  # 班号
+    sdept = models.ForeignKey(Sdept, verbose_name=u"学院", on_delete=models.CASCADE, null=True)  # 学院
+
+    class Meta:
+        db_table = 'sclass'
+        verbose_name = u'班级'
+        verbose_name_plural = verbose_name
+
+    def __unicode__(self):
+        return self.cid
+
+
+class Student(models.Model):  # 继承，学生表在继承的基础上包含以下内容
     sid = models.CharField('学号', max_length=20, primary_key=True)  # 学号
     password = models.CharField('密码', max_length=40, default='123456')  # 密码
     name = models.CharField('姓名', max_length=20)  # 姓名
-    sclass = models.CharField('班号', max_length=20)  # 班号
-    #sdept = models.CharField('学院', max_length=20, choices=DEPT, default=None)  
+    sclass = models.ForeignKey(Sclass, verbose_name=u"班号", on_delete=models.CASCADE, null=True)  # 班号
     sdept = models.ForeignKey(Sdept, verbose_name=u"学院", on_delete=models.CASCADE, null=True)  # 学院
     email = models.EmailField('邮箱', default=None)  # 邮箱
+    
     class Meta:  # 表名
         db_table = 'student'
         verbose_name = '学生'
@@ -94,6 +108,7 @@ class Question(models.Model):
     choice_num = models.IntegerField(verbose_name=u"选项数", default=4)
     level = models.CharField(verbose_name=u'等级', max_length=10, choices=LEVEL,null=True)
     score = models.IntegerField(verbose_name=u'分数', default=1)
+    collect = models.ManyToManyField(Student)
 
     class Meta:
         db_table = 'question'
@@ -137,6 +152,7 @@ class Grade(models.Model):
     grade=models.IntegerField(verbose_name=u'考试成绩', default=0)
     exam_time = models.DateTimeField(default=datetime.now, verbose_name=u"考试时间")
     course = models.ForeignKey(Course, verbose_name=u"科目", default=1, on_delete=models.CASCADE, null=True)
+    flag=models.IntegerField(verbose_name=u'成绩类型', default=0)
 
     class Meta:
         db_table='grade'

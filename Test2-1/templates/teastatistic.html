@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="/static/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet">
+    <!-- 必须在引入bootstarp.js之前引入 -->
+    <script src="/static/jquery-3.3.1.min.js"></script>
+    <script src="/static/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+
+    <link rel="stylesheet" href="/static/css/teacherinfo.css">
+    <link rel="stylesheet" href="/static/font-awesome-4.7.0/css/font-awesome.css">
+
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    
+    <title>教师页面</title>
+</head>
+<body>
+    <!--
+    <input type="checkbox" id="check">
+    <label for="check">
+        <i class="fa fa-bars" aria-hidden="true" id="btn"></i>
+        <i class="fa fa-times-circle-o" aria-hidden="true" id="cancel"></i>
+    </label>
+    -->
+    <div class="sidebar">
+        <header>TestOnline</header>
+        <div class="info-photo">
+                <div class="profile-dtl">
+					<img src="/static/img/11.jpg">
+					<h2>{{ request.session.name }}</h2>   <!--此处之后改为用户名字-->
+                </div>
+            </div>
+        <ul>
+            <li><a href="{% url 'TeaInfoPersonal' %}">个人信息</a></li>
+            <li><a href="{% url 'TeaStatistic' %}">成绩统计</a></li>
+            <li><a href="{% url 'TeaShowGrade' %}">成绩查看</a></li>
+            <li><a href="{% url 'AddPaper' %}">组卷</a></li>
+            <li><a href="{% url 'logout' %}">退出</a></li>
+        </ul>
+    </div>
+    <section>
+    <div class="container">
+        <div class="tab-content">
+            <div id="home" class="container tab-pane active"><br>
+                <h3>试卷列表</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>考试科目</th>
+                            <th>试卷名称</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for paper1 in paper%}
+                        <tr class="examinfo">
+                            <td>{{ paper1.course.name }}</td>
+                            <td>{{ paper1.name }}</td>
+                            <td>
+                                <a href="{%url 'show'%}?papername={{ paper1.name }}">
+                                    <button class="btn btn-primary" id="toSta+{{ paper1.name }}">统计</button>
+                                    <!--<button id="toExam+{{ paper1.name }}">开始考试</button>-->
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    </section>
+</body>
+</html>

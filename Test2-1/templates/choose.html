@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>组卷</title>
+    <link href="/static/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet">
+    <!-- 必须在引入bootstarp.js之前引入 -->
+    <script src="/static/jquery-3.3.1.min.js"></script>
+    <script src="/static/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="/static/font-awesome-4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/test.css">
+    <link rel="stylesheet" href="/static/css/iconfont.css">
+<style>
+.hasBeenAnswer {
+	background: #5d9cec;
+	color:#fff;
+}
+</style>
+</head>
+<body>
+<nav class="navbar navbar-expand-sm bg-light navbar-light ">
+    <ul class="navbar-nav">
+            <li style="position: absolute;left: 70px; font-size: 30px;color: #ffffff">科目:{{ cname }} </li>
+    </ul>
+</nav>
+<div class="main">
+    <div class="test_main">
+        <div class="test">
+            <form name="form1" action="/getChoose/" method="post">
+            <input type="hidden" name="cname" value="{{ cname }}">
+            <div class="test_title">
+                <!--
+                <span>共</span><i class="content_lit" id="num"></i><span>题，</span>
+                <span>合计</span><i class="content_fs" id="score"></i><span>分</span>-->
+                <input type="text" id="pname" name="name" placeholder="试卷名称">
+                <input type="text" id="ptime" name="time" placeholder="考试时间">
+                <font><input type="submit" name="submitpaper" value="提交"></font>
+                <font><input type="reset" name="reset" value="重置"></font>
+            </div>
+            <div class="test_content">
+                <div class="test_content_title">
+                    <h2>添加题目</h2>
+                </div>
+            </div>
+            <div class="test_content_nr">
+                <ul>
+                        {% for i in question %}
+                        <li id="{{ i.id }}">
+                            <div class="test_content_nr_tt">
+                                <input type="radio" class="radioOrCheck" name="{{ i.id }}" value="true"/>
+                                <span>({{ i.score }}分)</span>
+                                <font>{{ i.content }}</font>
+                            </div>
+
+                            <div class="test_content_nr_main">
+                                <ul>
+                                    <li class="option">
+                                        <label>
+                                            A.<p class="ue" style="display: inline;">{{ i.choice_a }}</p>
+                                        </label>
+                                    </li>
+
+                                    <li class="option">
+                                        <label>
+                                            B.<p class="ue" style="display: inline;">{{ i.choice_b }}</p>
+                                        </label>
+                                    </li>
+                                    {% if i.choice_num == 4 %}
+                                    <li class="option">
+                                        <label>
+                                            C.<p class="ue" style="display: inline;">{{ i.choice_c }}</p>
+                                        </label>
+                                    </li>
+
+                                    <li class="option">
+                                        <label>
+                                            D.<p class="ue" style="display: inline;">{{ i.choice_d }}</p>
+                                        </label>
+                                    </li>
+                                    {%endif%}
+                                    <span style="color: #085574; font-size:18px; font-weight:bold;">正确答案：{{i.answer}}</span>
+                                </ul>
+                            </div>
+                        </li>
+                    {% endfor %}
+                    
+                </ul>
+            </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="foot"></div>
+</div>
+</body>
+</html>

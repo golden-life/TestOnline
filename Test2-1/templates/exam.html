@@ -107,7 +107,7 @@
                                             B.<p class="ue" style="display: inline;">{{ test.choice_b }}</p>
                                         </label>
                                     </li>
-
+                                    {% if test.choice_num == 4 %}
                                     <li class="option">
                                         <input type="radio" class="radioOrCheck" name="{{ test.id }}" value="C"/>
                                         <label>
@@ -121,7 +121,7 @@
                                             D.<p class="ue" style="display: inline;">{{ test.choice_d }}</p>
                                         </label>
                                     </li>
-
+                                    {%endif%}
                                 </ul>
                             </div>
                         </li>

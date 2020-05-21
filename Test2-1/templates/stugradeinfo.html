@@ -36,6 +36,7 @@
             <li><a href="{%url 'StuInfoPersonal' %}">个人信息</a></li>
             <li><a href="{%url 'StuExamInfo' %}">考试信息</a></li>
             <li><a href="{%url 'StuGradeInfo' %}">成绩查看</a></li>
+            <li><a href="{%url 'ShowCollect' %}">收藏夹</a></li>
             <li><a href="{% url 'logout' %}">退出</a></li>
         </ul>
     </div>
@@ -44,30 +45,28 @@
             <div class="container">
                 <div class="tab-content">
                     <div id="home" class="container tab-pane active"><br>
-                    <!--    <h3>成绩信息</h3>
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>考试科目</th>
-                                    <th>试卷名称</th>
-                                    <th>考试时间</th>
-                                    <th>成绩</th>
-                                </tr>
-                            </thead>
-                            
-                            <tbody>
-                                {% for i in grade%}   
-                                <tr class="danger">
-                                    <td>{{ i.course.name }}</td>
-                                    <td>{{ i.exam_name }}</td>
-                                    <td>{{ i.exam_time }}</td>
-                                    <td>{{ i.grade }}</td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    -->
                         <h3>考试信息</h3>
+                        <form action="{% url 'StuSearchGrade' %}" method="get">
+                            <div class="box_1" style="font-size: 20px;">
+                                查询方式：
+                                <select name="method" id="method" onchange="document.getElementById('input').value=this.value">
+                                    <option value="all">全部</option>
+                                    <option value="high">最高成绩</option>
+                                    <option value="first">首次成绩</option>
+                                </select>
+                                
+                                &nbsp&nbsp&nbsp&nbsp试卷：
+                                <select name="paper" id="paper" onchange="document.getElementById('input').value=this.value">
+                                    {%for i in paper%}
+                                    <option value="{{i.name}}">{{i.name}}</option>
+                                    {% endfor %}
+                                </select>
+                                
+                                &nbsp&nbsp&nbsp&nbsp<input type="submit" name="" value="查看">
+                            
+                            </div>   
+                            </form>
+            
                         <table class="table">
                             <thead>
                                 <tr>
@@ -91,35 +90,6 @@
                     </div>
                 </div>
             </div>
-        
-        <!--
-    <div class="container">
-        <div class="tab-content">
-            <div id="home" class="container tab-pane active"><br>
-                <h3>成绩信息</h3>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>考试科目</th>
-                            <th>试卷名称</th>
-                            <th>考试时间</th>
-                            <th>成绩</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for i in grade%}   
-                        <tr class="danger">
-                            <td>{{ i.course.name }}</td>
-                            <td>{{ i.exam_name }}</td>
-                            <td>{{ i.exam_time }}</td>
-                            <td>{{ i.grade }}</td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>-->
     </section>
 </body>
 </html>

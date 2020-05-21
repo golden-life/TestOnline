@@ -36,6 +36,7 @@
             <li><a href="{%url 'StuInfoPersonal' %}">个人信息</a></li>
             <li><a href="{%url 'StuExamInfo' %}">考试信息</a></li>
             <li><a href="{%url 'StuGradeInfo' %}">成绩查看</a></li>
+            <li><a href="{%url 'ShowCollect' %}">收藏夹</a></li>
             <li><a href="{% url 'logout' %}">退出</a></li>
         </ul>
     </div>
@@ -98,7 +99,7 @@
                         </tr>
                         <tr class="examinfo">
                             <td>班号</td>
-                            <td>{{ stu.sclass }}</td>
+                            <td>{{ sclass_cid }}</td>
                         </tr>
                         <tr class="examinfo">
                             <td>邮箱地址</td>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>成绩</title>
+    <link href="/static/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet">
+    <!-- 必须在引入bootstarp.js之前引入 -->
+    <script src="/static/jquery-3.3.1.min.js"></script>
+    <script src="/static/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="/static/font-awesome-4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/test.css">
+<style>
+.hasBeenAnswer {
+	background: #5d9cec;
+	color:#fff;
+}
+</style>
+</head>
+<body>
+    
+    <nav class="navbar navbar-expand-sm bg-light navbar-light ">
+        <ul class="navbar-nav">
+            <li style="position: absolute;left: 70px; font-size: 30px;color: #ffffff">科目：{{course}}</li>
+            <a href="{%url 'ShowCollect' %}" style="position: absolute;right: 70px; font-size: 30px;color: #ffffff">返回</a>
+        </ul>
+    </nav>
+    <!--<div class="main">-->
+        <div class="test_main">
+            <div class="test">
+                <div class="test_content">
+                    <div class="test_content_title">
+                        <h2>您的收藏夹：</h2>
+                    </div>
+                </div>
+                <div class="test_content_nr">
+                    <ul>
+                        {% for i in question %}
+                        <li id="Collect{{ i.id }}">
+                            <div class="test_content_nr_tt">
+                                <i>{{ forloop.counter}}</i><span>({{ i.score }}分)</span>
+                                <font>{{ i.content }}</font>
+                            </div>
+
+                            <div class="test_content_nr_main">
+                                <ul>
+                                    <li class="option">
+                                        <label>
+                                            A.<p class="ue" style="display: inline;">{{ i.choice_a }}</p>
+                                        </label>
+                                    </li>
+
+                                    <li class="option">
+                                        <label>
+                                            B.<p class="ue" style="display: inline;">{{ i.choice_b }}</p>
+                                        </label>
+                                    </li>
+                                    {% if i.choice_num == 4 %}
+                                    <li class="option">
+                                        <label>
+                                            C.<p class="ue" style="display: inline;">{{ i.choice_c }}</p>
+                                        </label>
+                                    </li>
+
+                                    <li class="option">
+                                        <label>
+                                            D.<p class="ue" style="display: inline;">{{ i.choice_d }}</p>
+                                        </label>
+                                    </li>
+                                    {%endif%}
+                                </ul>
+                                
+                                <span style="color: #ff0000; font-size:18px; font-weight:bold;">正确答案：{{i.answer}}</span>
+                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                <button class="btn btn-primary" id="{{ i.id }}" >取消收藏</button>
+                            </div>
+                        </li>
+                        {% endfor %}   
+                    </ul>
+                </div>
+            </div>
+        </div>
+    
+    <!--</div>-->
+<script type="text/javascript">
+    /*$(document).ready(function(){
+                $('button').each(function(){
+                    alert($(this).attr('id'));
+                });
+            });*/
+    var name;
+    document.body.onclick = function(event){    //冒泡处理
+        //alert(event.target.tagName);
+        if (event.target.tagName=="BUTTON")
+        {
+            name = event.target.id;
+            //alert(name+"000");
+            loadXMLDoc();
+        }
+    }
+    function loadXMLDoc()
+    {
+        /*document.body.onclick = function(event){    //冒泡处理
+            name = event.target.id;
+            alert(name+"000");
+            //loadXMLDoc();
+            String="{%url 'AddCollect'%}?sid={{ request.session.sid }}&qid="+name
+        alert(String);
+        xmlhttp.open("GET",String,true);
+        xmlhttp.send();
+        }*/
+        var xmlhttp;
+        if (window.XMLHttpRequest)
+        {// code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp=new XMLHttpRequest();
+        }
+        else
+        {// code for IE6, IE5
+            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange=function()
+        {
+            if (xmlhttp.readyState==4 && xmlhttp.status==200)
+            {
+                //alert(name+"ppppe");
+                document.getElementById(name).innerHTML=xmlhttp.responseText;
+            }
+        }
+        String="{%url 'DeleteCollect'%}?sid={{ request.session.sid }}&qid="+name
+        //alert(String);
+        xmlhttp.open("GET",String,true);
+        xmlhttp.send();
+    }
+</script>
+</body>
+</html>

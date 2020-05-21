@@ -44,7 +44,7 @@
                 <div class="test_content_nr">
                     <ul>
                         {% for i in wrong_question %}
-                        <li id="{{ i.id }}">
+                        <li id="Add{{ i.id }}">
                             <div class="test_content_nr_tt">
                                 <i>{{ forloop.counter}}</i><span>({{ i.score }}分)</span>
                                 <font>{{ i.content }}</font>
@@ -63,7 +63,7 @@
                                             B.<p class="ue" style="display: inline;">{{ i.choice_b }}</p>
                                         </label>
                                     </li>
-
+                                    {% if i.choice_num == 4 %}
                                     <li class="option">
                                         <label>
                                             C.<p class="ue" style="display: inline;">{{ i.choice_c }}</p>
@@ -75,10 +75,18 @@
                                             D.<p class="ue" style="display: inline;">{{ i.choice_d }}</p>
                                         </label>
                                     </li>
-
+                                    {%endif%}
                                 </ul>
                                 
                                 <span style="color: #ff0000; font-size:18px; font-weight:bold;">正确答案：{{i.answer}}</span>
+                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                <input type="hidden" name="sid" value="{{ stu.sid }}">
+                                <button class="btn btn-primary" id="{{ i.id }}" >添加收藏</button>
                             </div>
                         </li>
                         {% endfor %}   
@@ -89,6 +97,55 @@
         </div>
     
     <!--</div>-->
-    
+<script type="text/javascript">
+    /*$(document).ready(function(){
+                $('button').each(function(){
+                    alert($(this).attr('id'));
+                });
+            });*/
+    var name;
+    document.body.onclick = function(event){    //冒泡处理
+        //alert(event.target.tagName);
+        if (event.target.tagName=="BUTTON")
+        {
+            name = event.target.id;
+            //alert(name+"000");
+            loadXMLDoc();
+        }
+    }
+    function loadXMLDoc()
+    {
+        /*document.body.onclick = function(event){    //冒泡处理
+            name = event.target.id;
+            alert(name+"000");
+            //loadXMLDoc();
+            String="{%url 'AddCollect'%}?sid={{ request.session.sid }}&qid="+name
+        alert(String);
+        xmlhttp.open("GET",String,true);
+        xmlhttp.send();
+        }*/
+        var xmlhttp;
+        if (window.XMLHttpRequest)
+        {// code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp=new XMLHttpRequest();
+        }
+        else
+        {// code for IE6, IE5
+            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange=function()
+        {
+            if (xmlhttp.readyState==4 && xmlhttp.status==200)
+            {
+                //alert(name+"ppppe");
+                document.getElementById(name).innerHTML=xmlhttp.responseText;
+            }
+        }
+        String="{%url 'AddCollect'%}?sid={{ request.session.sid }}&qid="+name
+        //alert(String);
+        xmlhttp.open("GET",String,true);
+        xmlhttp.send();
+    }
+</script>
 </body>
 </html>
