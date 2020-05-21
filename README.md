@@ -66,7 +66,4 @@ Django：3.0.4
 * javascript
 * css
 * Bootstrap
-* Jquery
-* Chartjs
-* Lary网页框架*/
 * MySQL
